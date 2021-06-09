@@ -16,19 +16,19 @@ public class RestlessGhost {
 		}
 		client.getPacketSender().sendString("@dre@Restless Ghost", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.restGhost == 0) {
+		if (client.RestlessGhost == 0) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString("I can start this quest by speaking to Father Aereck in",	8147);
 			client.getPacketSender().sendString("Lumbridge", 8148);
 			client.getPacketSender().sendString("Minimum Requirements:", 8149);
 			client.getPacketSender().sendString("None.", 8150);
-		} else if (client.restGhost == 1) {
+		} else if (client.RestlessGhost == 1) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to Father Aereck", 8147);
 			client.getPacketSender().sendString(
 					"I should speak to Father Urhey", 8148);
-		} else if (client.restGhost == 2) {
+		} else if (client.RestlessGhost == 2) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked Father Urhey", 8147);
@@ -36,14 +36,14 @@ public class RestlessGhost {
 					8148);
 			client.getPacketSender().sendString(
 					"I should speak to the ghost", 8149);
-		} else if (client.restGhost == 3) {
+		} else if (client.RestlessGhost == 3) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to the Ghost", 8147);
 			client.getPacketSender().sendString("I should travel to the wizards tower and kill the skeleton", 8148);
 			client.getPacketSender().sendString(
 					"I should find the ghosts skull", 8149);
-		} else if (client.restGhost == 4) {
+		} else if (client.RestlessGhost == 4) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString("@str@I've found the skull",
 					8147);
@@ -51,7 +51,7 @@ public class RestlessGhost {
 					"@str@I killed the skeleton", 8148);
 			client.getPacketSender().sendString(
 					"I should travel back to the ghost", 8149);
-		} else if (client.restGhost == 5) {
+		} else if (client.RestlessGhost == 5) {
 			client.getPacketSender().sendString("Restless Ghost", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've set the skull in the coffin", 8147);

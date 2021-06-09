@@ -483,7 +483,7 @@ public class CombatAssistant {
 			if (!SlayerRequirements.itemNeededSlayer(player, i) || !player.getSlayer().canAttackNpc(i)) {
 				return;
 			}
-			if (NpcHandler.npcs[i].npcType == 757 && player.vampSlayer > 2) {
+			if (NpcHandler.npcs[i].npcType == 757 && player.VampireSlayer > 2) {
 				if (!player.getItemAssistant().playerHasItem(1549, 1) || !player.getItemAssistant().playerHasItem(2347, 1)) {
 					player.getPacketSender().sendMessage("You need a stake and hammer to attack count draynor.");
 					resetPlayerAttack();

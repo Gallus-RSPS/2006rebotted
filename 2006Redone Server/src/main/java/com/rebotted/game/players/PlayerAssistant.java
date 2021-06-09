@@ -1,5 +1,6 @@
 package com.rebotted.game.players;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -25,6 +26,7 @@ import com.rebotted.game.items.impl.LightSources;
 import com.rebotted.game.items.impl.Greegree.MonkeyData;
 import com.rebotted.game.npcs.Npc;
 import com.rebotted.game.npcs.NpcHandler;
+import com.rebotted.integrations.website.bubble;
 import com.rebotted.util.GameLogger;
 import com.rebotted.util.Misc;
 import com.rebotted.world.Boundary;
@@ -94,6 +96,12 @@ public class PlayerAssistant {
 	}
 	
 	public void loginScreen() {
+		int messageCount = 0;
+
+		try {
+			messageCount = bubble.getMessageCount(player);
+		}catch(IOException e){}
+
 		player.getPacketSender().showInterface(15244);
 		player.getPacketSender().sendString("Welcome to " + GameConstants.SERVER_NAME + "\\n", 15257);
 		   int currentDay = player.getLastLogin() - player.lastLoginDate;
@@ -112,7 +120,7 @@ public class PlayerAssistant {
 	        	player.getPacketSender().sendString("You last logged in @red@" + (currentDay > 1 ? (currentDay + " @bla@days ago") : ("earlier today")) + " @bla@ from: @red@" + player.lastConnectedFrom, 15258);
 	        }
 		player.getPacketSender().sendString("" +GameConstants.SERVER_NAME + " will NEVER email you.\\n We use the forums or we \\nWill contact you through game.", 15260);
-		player.getPacketSender().sendString("You have 0 unread messages\\nin your message centre.", 15261);
+		player.getPacketSender().sendString("You have "+ messageCount + " unread messages\\nin your message centre.", 15261);
 		player.getPacketSender().sendString("You have @gre@unlimited@yel@ days of member credit.", 15262);
 		player.getPacketSender().sendString("CLICK HERE TO PLAY", 15263);
 		if (!player.hasBankpin) {
@@ -127,7 +135,7 @@ public class PlayerAssistant {
 	
 	private String[][] welcomeMessages = {
 			{"Remember to vote daily to help " + GameConstants.SERVER_NAME + "", "Every vote counts! :)"}, 
-			{"Not a member of our discord community?", "Join our discord at: https://discord.gg/Nk9WQUK"},
+			{"Not a member of our discord community?", "Join our discord at: discord.gg/BNhghqmryz"},
 			{"Do you have any bugs that you would like to report?", "Report them on our discord or message a staff member. :)"},
 			{"Want to help the server grow?", "Remember to vote daily and invite your friends!"}
 		};
@@ -1389,7 +1397,7 @@ public class PlayerAssistant {
 				GameLogger.writeLog(player.playerName, "duelingkilled", player.playerName + " was killed by " + duelOpponent.playerName + " in the duel arena.");
 			}
 		}
-		if (player.vampSlayer == 3 && player.clickedVamp) {
+		if (player.VampireSlayer == 3 && player.clickedVamp) {
 			player.clickedVamp = false;
 		} else if (player.isWoodcutting) {
 			player.isWoodcutting = false;
@@ -1816,9 +1824,7 @@ public class PlayerAssistant {
 			player.getPlayerAssistant().addStarter();
 			player.getPlayerAssistant().movePlayer(3233, 3229, 0);
 			player.getPacketSender().sendMessage("Welcome to @blu@" + GameConstants.SERVER_NAME + "@bla@ - we are currently in Server Stage v@blu@" + GameConstants.TEST_VERSION + "@bla@.");
-			player.getPacketSender().sendMessage("@red@Did you know?@bla@ We're open source and pull requests are welcome!");
-			player.getPacketSender().sendMessage("Source code: github.com/dginovker/2006rebotted");
-			player.getPacketSender().sendMessage("Discord: discord.gg/4zrA2Wy");
+			player.getPacketSender().sendMessage("Discord: discord.gg/BNhghqmryz");
 			player.getDialogueHandler().sendDialogues(3115, 2224);
 			player.isRunning2 = false;
 			player.autoRet = 1;
@@ -1847,7 +1853,7 @@ public class PlayerAssistant {
 		
 		if(!data.isPresent())
 			return;
-					
+		String message = "Advanced to level "+ getLevelForXP(player.playerXP[skill]) +" in " +data.get().toString()+".";
 		player.getPacketSender().sendMessage("Congratulations, you've advanced a level in "+data.get().toString()+"!");
 		player.getPacketSender().sendString("Congratulations, you've advanced a level in "+data.get().toString()+"!", data.get().getFrame2());
 		player.getPacketSender().sendString("Your " +data.get().toString()+ " level is now " + getLevelForXP(player.playerXP[skill]) + ".", data.get().getFrame3());
@@ -1856,6 +1862,9 @@ public class PlayerAssistant {
 		player.gfx0(199);
 		player.dialogueAction = 0;
 		player.nextChat = 0;
+		try {
+			bubble.addAdventureLog(player, message);
+		} catch(IOException e){}
 	}
 
 	public void refreshSkill(int skill) {
@@ -1906,6 +1915,7 @@ public class PlayerAssistant {
 	}
 
 	public boolean addSkillXP(double amount, int skill) {
+
 		if (amount + player.playerXP[skill] < 0 || player.playerXP[skill] > 200000000) {
 			if (player.playerXP[skill] > 200000000) {
 				player.playerXP[skill] = 200000000;
@@ -2192,6 +2202,15 @@ public class PlayerAssistant {
 		player.getOutStream().writeByte(i4);
 		player.updateRequired = true;
 		player.appearanceUpdateRequired = true;
+	}
+
+	public void sendCameraSpin(int i1, int i2, int i3, int i4, int i5) {
+		player.getOutStream().createFrame(166);
+		player.getOutStream().writeByte(i1 / 64);
+		player.getOutStream().writeByte(i2 / 64);
+		player.getOutStream().writeByte(i3);
+		player.getOutStream().writeByte(i4);
+		player.getOutStream().writeByte(i5);
 	}
 
 	/**

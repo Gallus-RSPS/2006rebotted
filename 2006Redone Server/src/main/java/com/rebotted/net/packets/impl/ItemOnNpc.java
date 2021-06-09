@@ -41,16 +41,16 @@ public class ItemOnNpc implements PacketType {
 			player.getItemAssistant().deleteItem(995, 1);
 			player.getDialogueHandler().sendNpcChat1("Thanks!", player.npcType, "Emily");
 		}
-		if (player.getItemAssistant().playerHasItem(1927, 1) && player.gertCat == 2 && npcId == 2997) {
+		if (player.getItemAssistant().playerHasItem(1927, 1) && player.GertrudesCat == 2 && npcId == 2997) {
 			player.getDialogueHandler().sendDialogues(319, npcId);
 			player.getItemAssistant().deleteItem(1927, 1);
 			player.getItemAssistant().addItem(1925, 1);
-			player.gertCat = 3;
-		} else if (player.getItemAssistant().playerHasItem(1552, 1) && player.gertCat == 3 && npcId == 2997) {
+			player.GertrudesCat = 3;
+		} else if (player.getItemAssistant().playerHasItem(1552, 1) && player.GertrudesCat == 3 && npcId == 2997) {
 			player.getDialogueHandler().sendDialogues(323, npcId);
 			player.getItemAssistant().deleteItem(1552, 1);
-			player.gertCat = 4;
-		} else if (player.getItemAssistant().playerHasItem(1554, 1) && player.gertCat == 5 && npcId == 2997) {
+			player.GertrudesCat = 4;
+		} else if (player.getItemAssistant().playerHasItem(1554, 1) && player.GertrudesCat == 5 && npcId == 2997) {
 			player.getItemAssistant().deleteItem(1554, 1);
 			player.getDialogueHandler().sendDialogues(326, npcId);
 		}

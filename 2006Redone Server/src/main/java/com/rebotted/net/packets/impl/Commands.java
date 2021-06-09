@@ -9,6 +9,8 @@ import com.rebotted.GameConstants;
 import com.rebotted.GameEngine;
 import com.rebotted.game.bots.BotHandler;
 import com.rebotted.game.content.combat.magic.SpellTeleport;
+import com.rebotted.game.content.randomevents.GenieLamp;
+import com.rebotted.game.content.randomevents.RandomEventHandler;
 import com.rebotted.game.npcs.NpcHandler;
 import com.rebotted.game.players.*;
 import com.rebotted.game.players.antimacro.AntiSpam;
@@ -500,6 +502,9 @@ public class Commands implements PacketType {
 
     public static void adminCommands(Player player, String playerCommand, String[] arguments) {
         switch (playerCommand.toLowerCase()) {
+            case "giverandom":
+                RandomEventHandler.callRandom(player);
+                break;
             case "clearbank":
                 player.getItemAssistant().clearBank();
                 break;

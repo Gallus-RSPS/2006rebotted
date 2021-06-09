@@ -16,7 +16,7 @@ public class PiratesTreasure {
 		}
 		client.getPacketSender().sendString("@dre@Pirate's Treasure", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.pirateTreasure == 0) {
+		if (client.PiratesTreasure == 0) {
 			client.getPacketSender().sendString("Pirate's Treasure", 8144);
 			client.getPacketSender().sendString(
 					"I can start this quest by speaking to Redbeard Frank in",
@@ -25,13 +25,13 @@ public class PiratesTreasure {
 			client.getPacketSender().sendString("", 8149);
 			client.getPacketSender().sendString(
 					"There are no minimum requirements.", 8150);
-		} else if (client.pirateTreasure == 1) {
+		} else if (client.PiratesTreasure == 1) {
 			client.getPacketSender().sendString("Pirate's Treasure", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to Redbeard.", 8147);
 			client.getPacketSender().sendString(
 					"He wants me to get him some rum", 8148);
-		} else if (client.pirateTreasure == 2) {
+		} else if (client.PiratesTreasure == 2) {
 			client.getPacketSender().sendString("Pirate's Treasure", 8144);
 			client.getPacketSender().sendString(
 					"@str@I talked to Redbeard.", 8147);
@@ -39,7 +39,7 @@ public class PiratesTreasure {
 					"@str@I found a way to get the rum", 8148);
 			client.getPacketSender().sendString(
 					"I should get the rum and return to Redbeard.", 8149);
-		} else if (client.pirateTreasure == 3) {
+		} else if (client.PiratesTreasure == 3) {
 			client.getPacketSender().sendString("Pirate's Treasure", 8144);
 			client.getPacketSender().sendString(
 					"@str@I talked to Redbeard.", 8147);
@@ -50,7 +50,7 @@ public class PiratesTreasure {
 			client.getPacketSender().sendString(
 					"He told me I need to look at the chest in", 8149);
 			client.getPacketSender().sendString("The blue moon inn", 8150);
-		} else if (client.pirateTreasure == 4) {
+		} else if (client.PiratesTreasure == 4) {
 			client.getPacketSender().sendString("Pirate's Treasure", 8144);
 			client.getPacketSender().sendString(
 					"@str@I talked to Redbeard.", 8147);
@@ -62,7 +62,7 @@ public class PiratesTreasure {
 					"@str@I looked in the chest", 8149);
 			client.getPacketSender().sendString(
 					"I need to go to falador and kill the gardener", 8150);
-		} else if (client.pirateTreasure == 5) {
+		} else if (client.PiratesTreasure == 5) {
 			client.getPacketSender().sendString(
 					"@str@I talked to Redbeard.", 8147);
 			client.getPacketSender().sendString(
@@ -75,7 +75,7 @@ public class PiratesTreasure {
 					"@str@I went to falador and killed the gardener", 8150);
 			client.getPacketSender().sendString(
 					"I should find the casket now", 8151);
-		} else if (client.pirateTreasure == 6) {
+		} else if (client.PiratesTreasure == 6) {
 			client.getPacketSender().sendString(
 					"@str@I talked to Redbeard.", 8147);
 			client.getPacketSender().sendString(

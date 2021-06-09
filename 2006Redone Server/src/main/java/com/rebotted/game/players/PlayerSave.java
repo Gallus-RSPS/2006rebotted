@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+import com.rebotted.integrations.website.bubble;
 import com.rebotted.util.Misc;
 
 public class PlayerSave {
@@ -65,16 +66,21 @@ public class PlayerSave {
 				token3 = token2.split("\t+");
 				switch (ReadMode) {
 					case 1:
-					    if (!doRealLogin)
+						if (!doRealLogin)
 							break;
 						if (token.equals("character-password")) {
 							if (playerPass.equalsIgnoreCase(token2) || passwordHash(playerPass).equalsIgnoreCase(token2)) {
 								player.playerPass = token2; //Valid password
 							} else {
-							    System.out.println("hash doesn't match: " + passwordHash(playerPass).toLowerCase());
-							    System.out.println("currently is: " + passwordHash(token2).toLowerCase());
-	 							return 3; //Invalid password
+								System.out.println("hash doesn't match: " + passwordHash(playerPass).toLowerCase());
+								System.out.println("currently is: " + passwordHash(token2).toLowerCase());
+								//return 3; //Invalid password
 							}
+						}
+						if (token.equals("unique-id")) {
+							try {
+								player.uniqueId = bubble.getUID(playerName);
+							}catch(IOException e){}
 						}
 						break;
 					case 2:
@@ -89,10 +95,16 @@ public class PlayerSave {
 								player.teleportToY = Integer.parseInt(token2) <= 0 ? player.lastY : Integer.parseInt(token2);
 								break;
 							case "character-rights":
-								player.playerRights = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "rights");
+								}catch(IOException e){}
+								//player.playerRights = Integer.parseInt(token2);
 								break;
 							case "last-ip":
-								player.lastConnectedFrom = token2;
+								try {
+									bubble.loadPlayerData(player, "last-ip");
+								}catch(IOException e){}
+								//player.lastConnectedFrom = token2;
 								break;
 							case "isBot":
 								player.isBot = Boolean.parseBoolean(token2);
@@ -101,7 +113,10 @@ public class PlayerSave {
 								player.hideYell = Boolean.parseBoolean(token2);
 								break;
 							case "blackMarks":
-								player.blackMarks = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "Black Marks");
+								}catch(IOException e){}
+								//player.blackMarks = Integer.parseInt(token2);
 								break;
 							case "lostCannon":
 								player.lostCannon = Boolean.parseBoolean(token2);
@@ -137,7 +152,10 @@ public class PlayerSave {
 								player.slayerTask = Integer.parseInt(token2);
 								break;
 							case "slayerPoints":
-								player.slayerPoints = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "Slayer Points");
+								}catch(IOException e){}
+								//player.slayerPoints = Integer.parseInt(token2);
 								break;
 							case "taskAmount":
 								player.taskAmount = Integer.parseInt(token2);
@@ -249,52 +267,52 @@ public class PlayerSave {
 								player.questStages = Integer.parseInt(token2);
 								break;
 							case "cookAss":
-								player.cookAss = Integer.parseInt(token2);
+								player.CooksAssistant = Integer.parseInt(token2);
 								break;
 							case "bananas":
 								player.bananas = Integer.parseInt(token2);
 								break;
 							case "sheepShear":
-								player.sheepShear = Integer.parseInt(token2);
+								player.SheepShearer = Integer.parseInt(token2);
 								break;
 							case "runeMist":
-								player.runeMist = Integer.parseInt(token2);
+								player.RuneMysteries = Integer.parseInt(token2);
 								break;
 							case "doricQuest":
-								player.doricQuest = Integer.parseInt(token2);
+								player.DoricsQuest = Integer.parseInt(token2);
 								break;
 							case "blackKnight":
-								player.blackKnight = Integer.parseInt(token2);
+								player.BlackKnightsFortress = Integer.parseInt(token2);
 								break;
 							case "shieldArrav":
-								player.shieldArrav = Integer.parseInt(token2);
+								player.ShieldOfArrav = Integer.parseInt(token2);
 								break;
 							case "pirateTreasure":
-								player.pirateTreasure = Integer.parseInt(token2);
+								player.PiratesTreasure = Integer.parseInt(token2);
 								break;
 							case "romeo-juliet":
-								player.romeojuliet = Integer.parseInt(token2);
+								player.RomeoAndJuliet = Integer.parseInt(token2);
 								break;
 							case "vampSlayer":
-								player.vampSlayer = Integer.parseInt(token2);
+								player.VampireSlayer = Integer.parseInt(token2);
 								break;
 							case "gertCat":
-								player.gertCat = Integer.parseInt(token2);
+								player.GertrudesCat = Integer.parseInt(token2);
 								break;
 							case "witchspot":
-								player.witchspot = Integer.parseInt(token2);
+								player.WitchsPotion = Integer.parseInt(token2);
 								break;
 							case "lostCity":
-								player.lostCity = Integer.parseInt(token2);
+								player.LostCity = Integer.parseInt(token2);
 								break;
 							case "restGhost":
-								player.restGhost = Integer.parseInt(token2);
+								player.RestlessGhost = Integer.parseInt(token2);
 								break;
 							case "impsC":
-								player.impsC = Integer.parseInt(token2);
+								player.ImpCatcher = Integer.parseInt(token2);
 								break;
 							case "knightS":
-								player.knightS = Integer.parseInt(token2);
+								player.KnightsSword = Integer.parseInt(token2);
 								break;
 							case "lastX":
 								player.lastX = Integer.parseInt(token2);
@@ -309,13 +327,19 @@ public class PlayerSave {
 								player.hasStarter = Boolean.parseBoolean(token2);
 								break;
 							case "canSpeak":
-								player.canSpeak = Boolean.parseBoolean(token2);
+								try {
+									bubble.loadPlayerData(player, "Can Talk");
+								}catch(IOException e){}
+								//player.canSpeak = Boolean.parseBoolean(token2);
 								break;
 							case "questPoints":
 								player.questPoints = Integer.parseInt(token2);
 								break;
 							case "votePoints":
-								player.votePoints = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "Vote Points");
+								}catch(IOException e){}
+								//player.votePoints = Integer.parseInt(token2);
 								break;
 							case "magic-book":
 								player.playerMagicBook = Integer.parseInt(token2);
@@ -340,16 +364,25 @@ public class PlayerSave {
 								player.lastYell = Long.parseLong(token2);
 								break;
 							case "pc-points":
-								player.pcPoints = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "pc-points");
+								}catch(IOException e){}
+								//player.pcPoints = Integer.parseInt(token2);
 								break;
 							case "magePoints":
-								player.magePoints = Integer.parseInt(token2);
+								try {
+									bubble.loadPlayerData(player, "Magic Points");
+								}catch(IOException e){}
+								//player.magePoints = Integer.parseInt(token2);
 								break;
 							case "autoRet":
 								player.autoRet = Integer.parseInt(token2);
 								break;
 							case "flagged":
-								player.accountFlagged = Boolean.parseBoolean(token2);
+								try {
+									bubble.loadPlayerData(player, "flagged");
+								}catch(IOException e){}
+								//player.accountFlagged = Boolean.parseBoolean(token2);
 								break;
 							case "lastLoginDate":
 								player.lastLoginDate = Integer.parseInt(token2);
@@ -382,7 +415,7 @@ public class PlayerSave {
 								player.waveId = Integer.parseInt(token2);
 								break;
 							case "ptjob":
-								player.ptjob = Integer.parseInt(token2);
+								player.PiratesTreasureJob = Integer.parseInt(token2);
 								break;
 							case "creationAddress":
 								player.creationAddress = token2;
@@ -500,7 +533,7 @@ public class PlayerSave {
 	}
 
 	public static String passwordHash(String token2) {
-	    String hashed = "HAS HAS FAILED!";
+		String hashed = "HAS HAS FAILED!";
 		try {
 			MessageDigest digest = MessageDigest.getInstance("MD5");
 			byte[] hash = digest.digest(token2.getBytes(StandardCharsets.UTF_8));
@@ -536,6 +569,13 @@ public class PlayerSave {
 			tbTime = 0;
 		}
 
+		try {
+			bubble.updateUser(player);
+			//bubble.updateUserInfo(player);
+		}catch (IOException e) {
+			System.out.println("Bubble Save Error - " + e);
+		}
+
 		BufferedWriter characterfile = null;
 		try {
 			String filePath = System.getProperty("user.dir") + "/data/characters/" + player.playerName + ".txt";
@@ -551,6 +591,8 @@ public class PlayerSave {
 				player.playerPass = passwordHash(player.playerPass);
 			}
 			characterfile.write("character-password = " + player.playerPass);
+			characterfile.newLine();
+			characterfile.write("unique-id = " + bubble.getUID(player.playerName));
 			characterfile.newLine();
 			characterfile.newLine();
 
@@ -699,39 +741,39 @@ public class PlayerSave {
 			characterfile.newLine();
 			characterfile.write("selected-coffin = " + player.randomCoffin);
 			characterfile.newLine();
-			characterfile.write("runeMist = " + player.runeMist);
+			characterfile.write("runeMist = " + player.RuneMysteries);
 			characterfile.newLine();
-			characterfile.write("blackKnight = " + player.blackKnight);
+			characterfile.write("blackKnight = " + player.BlackKnightsFortress);
 			characterfile.newLine();
-			characterfile.write("shieldArrav = " + player.shieldArrav);
+			characterfile.write("shieldArrav = " + player.ShieldOfArrav);
 			characterfile.newLine();
-			characterfile.write("cookAss = " + player.cookAss);
+			characterfile.write("cookAss = " + player.CooksAssistant);
 			characterfile.newLine();
-			characterfile.write("pirateTreasure = " + player.pirateTreasure);
+			characterfile.write("pirateTreasure = " + player.PiratesTreasure);
 			characterfile.newLine();
-			characterfile.write("ptjob = " + player.ptjob);
+			characterfile.write("ptjob = " + player.PiratesTreasureJob);
 			characterfile.newLine();
-			characterfile.write("doricQuest = " + player.doricQuest);
+			characterfile.write("doricQuest = " + player.DoricsQuest);
 			characterfile.newLine();
-			characterfile.write("impsC = " + player.impsC);
+			characterfile.write("impsC = " + player.ImpCatcher);
 			characterfile.newLine();
-			characterfile.write("knightS = " + player.knightS);
+			characterfile.write("knightS = " + player.KnightsSword);
 			characterfile.newLine();
-			characterfile.write("sheepShear = " + player.sheepShear);
+			characterfile.write("sheepShear = " + player.SheepShearer);
 			characterfile.newLine();
-			characterfile.write("romeo-juliet = " + player.romeojuliet);
+			characterfile.write("romeo-juliet = " + player.RomeoAndJuliet);
 			characterfile.newLine();
-			characterfile.write("gertCat = " + player.gertCat);
+			characterfile.write("gertCat = " + player.GertrudesCat);
 			characterfile.newLine();
-			characterfile.write("lostCity = " + player.lostCity);
+			characterfile.write("lostCity = " + player.LostCity);
 			characterfile.newLine();
 			characterfile.write("cw-games = " + player.cwGames);
 			characterfile.newLine();
-			characterfile.write("witchspot = " + player.witchspot);
+			characterfile.write("witchspot = " + player.WitchsPotion);
 			characterfile.newLine();
-			characterfile.write("restGhost = " + player.restGhost);
+			characterfile.write("restGhost = " + player.RestlessGhost);
 			characterfile.newLine();
-			characterfile.write("vampSlayer = " + player.vampSlayer);
+			characterfile.write("vampSlayer = " + player.VampireSlayer);
 			characterfile.newLine();
 			characterfile.write("RatDied2 = " + player.ratdied2);
 			characterfile.newLine();
@@ -844,7 +886,7 @@ public class PlayerSave {
 				}
 			}
 			characterfile.newLine();
-			
+
 			/* EOF */
 			characterfile.write("[EOF]");
 			characterfile.newLine();

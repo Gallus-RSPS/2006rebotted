@@ -15,7 +15,7 @@ public class DoricsQuest {
 		}
 		client.getPacketSender().sendString("@dre@Dorics Quest", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.doricQuest == 0) {
+		if (client.DoricsQuest == 0) {
 			client.getPacketSender().sendString("Dorics Quest", 8144);
 			client.getPacketSender().sendString(
 					"I can start this quest by speaking to doric", 8147);
@@ -24,7 +24,7 @@ public class DoricsQuest {
 			client.getPacketSender().sendString("", 8149);
 			client.getPacketSender().sendString(
 					"Recommended Levels: 15 Mining", 8150);
-		} else if (client.doricQuest == 1) {
+		} else if (client.DoricsQuest == 1) {
 			client.getPacketSender().sendString("Dorics Quest", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to the doric.", 8147);
@@ -45,7 +45,7 @@ public class DoricsQuest {
 			} else {
 				client.getPacketSender().sendString("@red@2 Iron ore", 8151);
 			}
-		} else if (client.doricQuest == 2) {
+		} else if (client.DoricsQuest == 2) {
 			client.getPacketSender().sendString("Dorics Quest", 8144);
 			client.getPacketSender().sendString(
 					"@str@I talked to the doric.", 8147);
@@ -53,7 +53,7 @@ public class DoricsQuest {
 					"@str@I gave the doric his items.", 8148);
 			client.getPacketSender().sendString(
 					"I should go speak to the doric.", 8149);
-		} else if (client.doricQuest == 3) {
+		} else if (client.DoricsQuest == 3) {
 			client.getPacketSender().sendString("Dorics Quest", 8144);
 			client.getPacketSender().sendString(
 					"@str@I talked to the doric.", 8147);

@@ -133,9 +133,49 @@ public class ObjectsActions {
             case 11163:
                 Ectofuntus.useBoneGrinder(player);
                 break;
-
             case 11164:
                 Ectofuntus.emptyBin(player);
+                break;
+            case 5282:
+                Ectofuntus.handleEctofuntus(player, objectType);
+                break;
+            case 5281:
+                player.getPlayerAssistant().movePlayer(3666,3517,0);
+                break;
+            case 5280:
+                player.getPlayerAssistant().movePlayer(3666, 3522, 1);
+                break;
+            case 5263:
+                switch(player.heightLevel) {
+                    case 1:
+                        player.getPlayerAssistant().movePlayer(3683,9888,0);
+                        break;
+                    case 2:
+                        player.getPlayerAssistant().movePlayer(3675,9888,1);
+                        break;
+                    case 3:
+                        player.getPlayerAssistant().movePlayer(3688,9888,2);
+                        break;
+                }
+                break;
+            case 5262:
+                switch(player.heightLevel) {
+                    case 0:
+                        player.getPlayerAssistant().movePlayer(3687,9888,1);
+                        break;
+                    case 1:
+                        player.getPlayerAssistant().movePlayer(3671,9888,2);
+                        break;
+                    case 2:
+                        player.getPlayerAssistant().movePlayer(3692,9888,3);
+                        break;
+                }
+                break;
+            case 5264:
+                player.getPlayerAssistant().movePlayer(3654,3519,0);
+                break;
+            case 5267:
+                player.getPlayerAssistant().movePlayer(3669,9888,3);
                 break;
             case 6:
                 player.getCannon().clickCannon(objectX, objectY);
@@ -243,10 +283,10 @@ public class ObjectsActions {
                 break;
 
             case 2272:
-                if (player.knightS == 5) {
+                if (player.KnightsSword == 5) {
                     player.getPacketSender().sendMessage("You search the cupboard...");
                     player.getDialogueHandler().sendDialogues(659, -1);
-                    player.knightS = 6;
+                    player.KnightsSword = 6;
                 } else {
                     player.getPacketSender().sendMessage("You search the cupboard...");
                     player.getPacketSender().sendMessage("and don't find anything interesting.");
@@ -628,15 +668,15 @@ public class ObjectsActions {
                 break;
 
             case 2620:
-                if (player.gertCat == 6) {
+                if (player.GertrudesCat == 6) {
                     player.getPacketSender().sendMessage("You have already found fluffs kitten.");
                     return;
                 }
-                if (player.gertCat == 5) {
+                if (player.GertrudesCat == 5) {
                     player.getPacketSender().sendMessage("You search the crate...");
                     if (Misc.random(25) == 1) {
                         player.getItemAssistant().addItem(1554, 1);
-                        player.gertCat = 6;
+                        player.GertrudesCat = 6;
                         player.getPacketSender().sendMessage("You find the kitten you should go back to fluffs.");
                     } else {
                         player.getPacketSender().sendMessage("and find nothing...");
@@ -1756,7 +1796,7 @@ public class ObjectsActions {
                     player.getItemAssistant().addItem(433, 1);
                     player.getPacketSender().sendMessage(
                             "All that's in the chest is a message...");
-                    player.pirateTreasure = 4;
+                    player.PiratesTreasure = 4;
                 } else {
                     player.getPacketSender().sendMessage(
                             "You need a key to open this chest.");
@@ -1764,7 +1804,7 @@ public class ObjectsActions {
                 break;
 
             case 2071:
-                if (player.pirateTreasure == 2) {
+                if (player.PiratesTreasure == 2) {
                     player.getDialogueHandler().sendStatement("You search the crate...");
                     player.getPacketSender().sendMessage(
                             "You find a bottle of rum and 10 bananas.");
@@ -1783,10 +1823,10 @@ public class ObjectsActions {
                 break;
 
             case 2024: // WP quest
-                if (player.witchspot == 2) {
+                if (player.WitchsPotion == 2) {
                     // c.getDH().sendStatement("You drink from the cauldron, it tastes horrible!",
                     // "You feel yourself imbued with power.");
-                    player.witchspot = 3;
+                    player.WitchsPotion = 3;
                     QuestRewards.witchFinish(player);
                 } else {
                     player.getPacketSender().sendMessage(
@@ -1795,16 +1835,16 @@ public class ObjectsActions {
                 break;
 
             case 2614:
-                if (player.vampSlayer == 3 && player.clickedVamp == false) {
+                if (player.VampireSlayer == 3 && player.clickedVamp == false) {
                     NpcHandler.spawnNpc(player, 757, player.getX(), player.getY(), 0, 0, 50, 10, 30, 30, true, true);
                     player.getPacketSender().sendMessage("You will need a stake and hammer to attack count draynor.");
                     player.clickedVamp = true;
-                } else if (player.vampSlayer == 3 && player.clickedVamp) {
+                } else if (player.VampireSlayer == 3 && player.clickedVamp) {
                     player.getPacketSender().sendMessage("You have already spawned the vampyre.");
                     return;
-                } else if (player.vampSlayer > 3) {
+                } else if (player.VampireSlayer > 3) {
                     player.getPacketSender().sendMessage("You have already killed the vampire.");
-                } else if (player.vampSlayer < 3) {
+                } else if (player.VampireSlayer < 3) {
                     player.getPacketSender().sendMessage("You still need to progress into vampire slayer to fight this monster.");
                 }
                 break;
@@ -1846,11 +1886,11 @@ public class ObjectsActions {
                             "Talk to luthas for your reward.");
                     player.bananas = 2;
                 } else if (player.getItemAssistant().playerHasItem(431, 1)
-                        && player.pirateTreasure == 1) {
+                        && player.PiratesTreasure == 1) {
                     player.getItemAssistant().deleteItem(431, 1);
                     player.getDialogueHandler().sendStatement(
                             "You stash your rum in the crate");
-                    player.pirateTreasure = 2;
+                    player.PiratesTreasure = 2;
                 } else if (player.objectX == 2746) {
                     player.getPacketSender().sendMessage("You search the crate...");
                     player.stopPlayerPacket = true;
@@ -1897,7 +1937,7 @@ public class ObjectsActions {
                 if (player.playerEquipment[player.playerWeapon] == 772) {
                     player.getPlayerAssistant().startTeleport(2452, 4470, 0, "modern");
                     player.getPacketSender().sendMessage("You are suddenly teleported away.");
-                    if (player.lostCity == 2 || player.lostCity == 1)
+                    if (player.LostCity == 2 || player.LostCity == 1)
                     {
                         player.getPacketSender().sendMessage("You have found the Lost City of Zanaris!");
                         QuestRewards.lostCityReward(player);
@@ -2116,7 +2156,7 @@ public class ObjectsActions {
                 break;
 
             case 2403:// should be 2418 but not working
-                if (player.shieldArrav >= 6 && player.getItemAssistant().playerHasItem(759)) {
+                if (player.ShieldOfArrav >= 6 && player.getItemAssistant().playerHasItem(759)) {
                     GameEngine.objectHandler.createAnObject(player, 2604, objectX, objectY, player.heightLevel, 0);
                     Region.addObject(2604, objectX, objectY, 0, 0, 0, false);
                 } else {
@@ -2125,7 +2165,7 @@ public class ObjectsActions {
                 break;
 
             case 2604:
-                if (player.objectX == 3235 && player.objectY == 9761 && player.shieldArrav >= 6) {
+                if (player.objectX == 3235 && player.objectY == 9761 && player.ShieldOfArrav >= 6) {
                     player.getDialogueHandler().sendDialogues(742, -1);
                 } else {
                     player.getPacketSender().openUpBank();
@@ -2598,29 +2638,29 @@ public class ObjectsActions {
                 break;
 
             case 2145:
-                if (player.restGhost == 2 && player.playerEquipment[player.playerAmulet] == 552) {
+                if (player.RestlessGhost == 2 && player.playerEquipment[player.playerAmulet] == 552) {
                     NpcHandler.spawnNpc(player, 457, player.getX(), player.getY() + 2, 0, 0, 0, 0, 0, 0, false, false);
                     player.getPacketSender().sendMessage("You search the coffin.");
-                } else if (player.restGhost == 4 && player.getItemAssistant().playerHasItem(553, 1)) {
+                } else if (player.RestlessGhost == 4 && player.getItemAssistant().playerHasItem(553, 1)) {
                     player.getItemAssistant().deleteItem(553, 1);
                     player.getPacketSender().sendMessage("You have freed the ghost!");
                     QuestRewards.restFinish(player);
                     NpcHandler.spawnNpc(player, 457, player.getX(), player.getY() + 2, 0, 0, 0, 0, 0, 0, false, false);
-                } else if (player.restGhost == 2 && player.playerEquipment[player.playerAmulet] != 552) {
+                } else if (player.RestlessGhost == 2 && player.playerEquipment[player.playerAmulet] != 552) {
                     player.getDialogueHandler().sendStatement("You need the ghost speak amulet for this part.");
                     player.nextChat = 0;
-                } else if (player.restGhost == 4 && !player.getItemAssistant().playerHasItem(553, 1)) {
+                } else if (player.RestlessGhost == 4 && !player.getItemAssistant().playerHasItem(553, 1)) {
                     player.getDialogueHandler().sendStatement("You need the skull for this part.");
                     player.nextChat = 0;
-                } else if (player.restGhost == 0) {
+                } else if (player.RestlessGhost == 0) {
                     player.getPacketSender().sendMessage("You have not started this quest yet.");
-                } else if (player.restGhost == 5) {
+                } else if (player.RestlessGhost == 5) {
                     player.getPacketSender().sendMessage("You have already finished this quest.");
                 }
                 break;
 
             case 2402:
-                if (player.shieldArrav == 1)
+                if (player.ShieldOfArrav == 1)
                     player.getDialogueHandler().sendDialogues(696, -1);
                 else
                     player.getPacketSender().sendMessage("The bookcase is empty.");

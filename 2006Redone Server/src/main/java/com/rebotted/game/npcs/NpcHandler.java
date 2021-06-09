@@ -784,8 +784,8 @@ public class NpcHandler {
                         if (npcs[i].npcType > 412 && npcs[i].npcType < 419) {
                             player.golemSpawned = false;
                         }
-                        if (npcs[i].npcType == 757 && player.vampSlayer == 3) {
-                            player.vampSlayer = 4;
+                        if (npcs[i].npcType == 757 && player.VampireSlayer == 3) {
+                            player.VampireSlayer = 4;
                         }
                         if (npcs[i].npcType > 390 && npcs[i].npcType < 397) {
                             RiverTroll.hasRiverTroll = false;
@@ -1058,18 +1058,18 @@ public class NpcHandler {
                     GameEngine.itemHandler.createGroundItem(c, 6178, npcs[i].absX, npcs[i].absY, 1, c.playerId);
                     break;
                 case 92:
-                    if (c.restGhost == 3) {
+                    if (c.RestlessGhost == 3) {
                         GameEngine.itemHandler.createGroundItem(c, 553, npcs[i].absX, npcs[i].absY, 1, c.playerId);
-                        c.restGhost = 4;
+                        c.RestlessGhost = 4;
                     }
                     break;
                 case 47:
-                    if (c.witchspot == 1 || c.romeojuliet > 0 && c.romeojuliet < 9) {
+                    if (c.WitchsPotion == 1 || c.RomeoAndJuliet > 0 && c.RomeoAndJuliet < 9) {
                         GameEngine.itemHandler.createGroundItem(c, 300, npcs[i].absX, npcs[i].absY, 1, c.playerId);
                     }
                     break;
                 case 645:
-                    if (c.shieldArrav == 5) {
+                    if (c.ShieldOfArrav == 5) {
                         GameEngine.itemHandler.createGroundItem(c, 761, npcs[i].absX, npcs[i].absY, 1, c.playerId);
                     }
                     break;

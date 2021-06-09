@@ -1,5 +1,6 @@
 package com.rebotted.game.content.randomevents;
 
+import com.rebotted.game.content.randomevents.RandomEventHandler;
 import com.rebotted.game.players.Player;
 import com.rebotted.util.Misc;
 

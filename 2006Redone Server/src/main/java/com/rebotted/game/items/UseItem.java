@@ -75,7 +75,7 @@ public class UseItem {
 			c.getSmithingInt().showSmithInterface(itemId);
 			break;
 		case 2782:
-			if (c.doricQuest >= 3) {
+			if (c.DoricsQuest >= 3) {
 				c.getSmithingInt().showSmithInterface(itemId);
 			} else {
 				c.getPacketSender().sendMessage(

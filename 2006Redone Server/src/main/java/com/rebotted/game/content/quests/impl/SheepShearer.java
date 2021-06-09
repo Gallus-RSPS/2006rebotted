@@ -15,14 +15,14 @@ public class SheepShearer {
 		}
 		client.getPacketSender().sendString("@dre@Sheep Shearer", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.sheepShear == 0) {
+		if (client.SheepShearer == 0) {
 			client.getPacketSender().sendString("Sheep Shearer", 8144);
 			client.getPacketSender().sendString(
 					"I can start this quest by speaking to Fred in", 8147);
 			client.getPacketSender().sendString("Lumbridge.", 8148);
 			client.getPacketSender().sendString("Minimum Requirments:", 8149);
 			client.getPacketSender().sendString("None.", 8150);
-		} else if (client.sheepShear == 1) {
+		} else if (client.SheepShearer == 1) {
 			client.getPacketSender().sendString("Sheep Shearer", 8144);
 			client.getPacketSender().sendString("@str@I've talked to fred",
 					8147);
@@ -34,7 +34,7 @@ public class SheepShearer {
 				client.getPacketSender().sendString("@red@Ball of Wool",
 						8149);
 			}
-		} else if (client.sheepShear == 2) {
+		} else if (client.SheepShearer == 2) {
 			client.getPacketSender().sendString("Sheep Shearer", 8144);
 			client.getPacketSender().sendString("@str@I gave fred his wool",
 					8147);

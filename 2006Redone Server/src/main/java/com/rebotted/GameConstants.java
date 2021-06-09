@@ -1,10 +1,15 @@
 package com.rebotted;
 
-public class GameConstants {
+import com.rebotted.integrations.website.bubble;
+
+import java.io.IOException;
+
+
+public class GameConstants{
 
 	public final static boolean SERVER_DEBUG = false;
 
-	public final static String SERVER_NAME = "2006rebotted", SERVER_VERSION = "Server Stage v " + GameConstants.TEST_VERSION + ".";
+	public final static String SERVER_NAME = "06Revived", SERVER_VERSION = "Server Stage v " + GameConstants.TEST_VERSION + ".";
 	
 	public final static double TEST_VERSION = 2.3;
 	
@@ -49,7 +54,7 @@ public class GameConstants {
 	public final static int CASTLE_WARS_X = 2439;
 	
 	public final static int CASTLE_WARS_Y = 3087;
-	
+
 	public static double XP_RATE = 1;
 	
 	public final static int SAVE_TIMER = 120; // save every 2 minute

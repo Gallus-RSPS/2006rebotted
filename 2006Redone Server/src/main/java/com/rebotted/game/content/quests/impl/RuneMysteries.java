@@ -15,7 +15,7 @@ public class RuneMysteries {
 		}
 		client.getPacketSender().sendString("@dre@Rune Mysteries", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.runeMist == 0) {
+		if (client.RuneMysteries == 0) {
 			client.getPacketSender().sendString("Rune Mysteries", 8144);
 			client.getPacketSender().sendString(
 					"I can start this quest by speaking to Duke Horiaco", 8147);
@@ -25,13 +25,13 @@ public class RuneMysteries {
 			client.getPacketSender().sendString("", 8149);
 			client.getPacketSender().sendString(
 					"There are no minimum requirments.", 8150);
-		} else if (client.runeMist == 1) {
+		} else if (client.RuneMysteries == 1) {
 			client.getPacketSender().sendString("Rune Mysteries", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to the duke", 8147);
 			client.getPacketSender().sendString(
 					"I should take the talisman to the Head Wizard.", 8148);
-		} else if (client.runeMist == 2) {
+		} else if (client.RuneMysteries == 2) {
 			client.getPacketSender().sendString("Rune Mysteries", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to Sedridor", 8147);
@@ -39,7 +39,7 @@ public class RuneMysteries {
 					"@str@I gave him the talisman", 8148);
 			client.getPacketSender().sendString(
 					"I should bring the notes to Aubury.", 8149);
-		} else if (client.runeMist == 3) {
+		} else if (client.RuneMysteries == 3) {
 			client.getPacketSender().sendString("Rune Mysteries", 8144);
 			client.getPacketSender().sendString(
 					"@str@I've talked to Aubury.", 8147);
@@ -47,7 +47,7 @@ public class RuneMysteries {
 					8148);
 			client.getPacketSender().sendString(
 					"I should go back to the wizard tower", 8149);
-		} else if (client.runeMist == 4) {
+		} else if (client.RuneMysteries == 4) {
 			client.getPacketSender().sendString("Rune Mysteries", 8144);
 			client.getPacketSender().sendString("@str@I talked to Sedridor",
 					8147);

@@ -1,5 +1,6 @@
 package com.rebotted.game.players;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.Queue;
 
 import com.everythingrs.hiscores.Hiscores;
+import com.rebotted.integrations.website.bubble;
 import org.apache.mina.common.IoSession;
 import com.rebotted.GameConstants;
 import com.rebotted.GameEngine;
@@ -95,8 +97,9 @@ import com.rebotted.world.Boundary;
 import com.rebotted.world.ObjectManager;
 
 public abstract class Player {
-	
+
 	public byte buffer[] = null;
+	public boolean inWaitingBoat;
 	public String lastConnectedFrom;
 	private Compost compost = new Compost(this);
 	private Allotments allotment = new Allotments(this);
@@ -111,7 +114,7 @@ public abstract class Player {
 	private SpecialPlantTwo specialPlantTwo = new SpecialPlantTwo(this);
 	private ToolLeprechaun toolLeprechaun = new ToolLeprechaun(this);
 	public Stream inStream = null, outStream = null;
-    public IoSession session;
+	public IoSession session;
 	private final ItemAssistant itemAssistant = new ItemAssistant(this);
 	private final ShopAssistant shopAssistant = new ShopAssistant(this);
 	private final Trading trading = new Trading(this);
@@ -154,7 +157,7 @@ public abstract class Player {
 	private final ObjectManager objectManager = new ObjectManager();
 	public ArrayList<GameItem> fishingTrawlerReward = new ArrayList<GameItem>();
 	private final RangersGuild rangersGuild = new RangersGuild(this);
-    private GlassBlowing glassBlowing = new GlassBlowing(this);
+	private GlassBlowing glassBlowing = new GlassBlowing(this);
 	private Barrows barrows = new Barrows(this);
 	private Mining mining = new Mining();
 	private ChallengePlayer challengePlayer = new ChallengePlayer();
@@ -164,7 +167,7 @@ public abstract class Player {
 	private SingleGates singleGates = new SingleGates();
 	private DoubleGates doubleGates = new DoubleGates();
 	public int lastMainFrameInterface = -1; //Possibly used in future to prevent packet exploits
-	
+
 	public boolean isPreaching() {
 		return preaching;
 	}
@@ -172,9 +175,9 @@ public abstract class Player {
 	public void setPreaching(boolean preaching) {
 		this.preaching = preaching;
 	}
-	
+
 	public boolean preaching;
-	
+
 	public Compost getCompost() {
 		return compost;
 	}
@@ -222,12 +225,12 @@ public abstract class Player {
 	public ToolLeprechaun getFarmingTools() {
 		return toolLeprechaun;
 	}
-	
+
 
 	public LogCuttingInterface getFletching() {
 		return fletching;
 	}
-	
+
 	public SingleGates getSingleGates() {
 		return singleGates;
 	}
@@ -256,9 +259,9 @@ public abstract class Player {
 		return barrows;
 	}
 
-    public GlassBlowing getGlassBlowing() {
-        return glassBlowing;
-    }
+	public GlassBlowing getGlassBlowing() {
+		return glassBlowing;
+	}
 
 	public RangersGuild getRangersGuild() {
 		return rangersGuild;
@@ -439,13 +442,13 @@ public abstract class Player {
 	public Inventory getInventory() {
 		return inventory;
 	}
-	
+
 	private Inventory inventory = new Inventory(this);
-	
-	
+
+
 	private int tempInteger;
 	public boolean tempBoolean;
-	
+
 	public void setTempInteger(int tempInteger) {
 		this.tempInteger = tempInteger;
 	}
@@ -455,17 +458,17 @@ public abstract class Player {
 	}
 
 	public int totalShopItems;
-	
+
 	public boolean stopPlayer(boolean stop) {
 		return (stop ? stopPlayerPacket == true : stopPlayerPacket == false);
 	}
-	
+
 	public long objectDelay;
-	
+
 	public long getObjectDelay() {
 		return (objectDelay);
 	}
-	
+
 	public long setObjectDelay(long delay) {
 		return (objectDelay = delay);
 	}
@@ -617,7 +620,7 @@ public abstract class Player {
 		}
 		if(GameEngine.trawler.players.contains(this)) {
 			GameEngine.trawler.players.remove(this);
-	    }
+		}
 		if (CastleWars.isInCwWait(this)) {
 			CastleWars.leaveWaitingRoom(this);
 		}
@@ -683,7 +686,7 @@ public abstract class Player {
 		synchronized (this) {
 			if(GameEngine.trawler.players.contains(this)) {
 				GameEngine.trawler.players.remove(this);
-	        }
+			}
 			if (getCannon().hasCannon()) {
 				getCannon().removeObject(cannonX, cannonY);
 				for(int i = 0; i < GameEngine.cannonsX.length; i++) {
@@ -718,7 +721,10 @@ public abstract class Player {
 				getPacketSender().sendMessage("You can't logout during combat!");
 				return;
 			}
-		    lastLoginDate = getLastLogin();
+			lastLoginDate = getLastLogin();
+			try {
+				uniqueId = bubble.getUID(playerName);
+			}catch(IOException e){}
 			lastX = absX;
 			lastY = absY;
 			lastH = heightLevel;
@@ -742,17 +748,17 @@ public abstract class Player {
 	public int axeAnimation = -1;
 
 	public void antiFirePotion() {
-		   CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
-	            @Override
-	            public void execute(CycleEventContainer container) {
+		CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
+			@Override
+			public void execute(CycleEventContainer container) {
 				antiFirePot = false;
 				getPacketSender().sendMessage("Your resistance to dragon fire has worn off.");
 				container.stop();
 			}
 			@Override
-				public void stop() {
+			public void stop() {
 
-				}
+			}
 		}, 200);
 	}
 
@@ -770,13 +776,13 @@ public abstract class Player {
 		return isBusy;
 	}
 
-	 public int getLastLogin() {
-	        Calendar cal = new GregorianCalendar();
-	        int day = cal.get(Calendar.DAY_OF_MONTH);
-	        int month = cal.get(Calendar.MONTH);
-	        int year = cal.get(Calendar.YEAR);
-	        return (year * 10000) + (month * 100) + day;
-	    }
+	public int getLastLogin() {
+		Calendar cal = new GregorianCalendar();
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int month = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
+		return (year * 10000) + (month * 100) + day;
+	}
 
 	public void updateWalkEntities() {
 		if (inWild() && !inCw()) {
@@ -805,13 +811,15 @@ public abstract class Player {
 			}
 		} else if (getPlayerAssistant().inPitsWait()) {
 			getPacketSender().showOption(3, 0, "Null", 1);
-        } else if(GameEngine.trawler.players.contains(this)) {
-        	getPacketSender().walkableInterface(11908);
+		} else if(GameEngine.trawler.players.contains(this)) {
+			getPacketSender().walkableInterface(11908);
 			isSnowy = false;
 		} else if (Boundary.isIn(this, Boundary.BARROWS) || Boundary.isIn(this, Boundary.BARROWS_UNDERGROUND)) {
 			getPacketSender().sendString("Kill Count: " + barrowsKillCount, 4536);
 			getPacketSender().walkableInterface(4535);
 			isSnowy = false;
+		} else if(PestControl.isInPcBoat(player)) {
+			getPacketSender().walkableInterface(11908);
 		} else if (inCw() || inPits) {
 			getPacketSender().showOption(3, 0, "Attack", 1);
 		} else {
@@ -905,7 +913,7 @@ public abstract class Player {
 		if (System.currentTimeMillis() - singleCombatDelay2 > 3300) {
 			underAttackBy2 = 0;
 		}
-		
+
 		if (System.currentTimeMillis() - restoreStatsDelay > 60000) {
 			restoreStatsDelay = System.currentTimeMillis();
 			for (int level = 0; level < playerLevel.length; level++) {
@@ -1180,87 +1188,87 @@ public abstract class Player {
 			getDialogueHandler().sendDialogues(101, 2617);
 			getPlayerAssistant().movePlayer(absX, absY, playerId * 4);
 			getPacketSender().sendMessage("Your wave will start in 10 seconds.");
-			 CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
-		            @Override
-		            public void execute(CycleEventContainer container) {
+			CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
+				@Override
+				public void execute(CycleEventContainer container) {
 					GameEngine.fightCaves.spawnNextWave((Client) PlayerHandler.players[playerId]);
 					container.stop();
 				}
 				@Override
-					public void stop() {
+				public void stop() {
 
-					}
+				}
 			}, 16);
 		}
 	}
 
-	 public void trawlerFade(final int x, final int y, final int height) {
-        if (System.currentTimeMillis() - lastAction > 5000) {
-            lastAction = System.currentTimeMillis();
-            resetWalkingQueue();
-            CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
-                int tStage = 5;
-                public void execute(CycleEventContainer container) {
-                	if (tStage == 5) {
-                		getPacketSender().showInterface(18460);
-                    }
-                    if (tStage == 4) {
-                      getPlayerAssistant().movePlayer(x, y, height);
-                      getPlayerAssistant().resetAnimationsToPrevious();
-                      appearanceUpdateRequired = true;
-                    }
-                    if (tStage == 3) {
-                      getPacketSender().showInterface(18452);
-                    }
-                    if (tStage == 1) {
-                        container.stop();
-                        return;
-                    }
-                    if (tStage > 0) {
-                    	tStage--;
-                    }
-                }
-                public void stop() {
-                    getPacketSender().closeAllWindows();
-                    tStage = 0;
-                }
-            }, 1);
-        }
-    }
+	public void trawlerFade(final int x, final int y, final int height) {
+		if (System.currentTimeMillis() - lastAction > 5000) {
+			lastAction = System.currentTimeMillis();
+			resetWalkingQueue();
+			CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
+				int tStage = 5;
+				public void execute(CycleEventContainer container) {
+					if (tStage == 5) {
+						getPacketSender().showInterface(18460);
+					}
+					if (tStage == 4) {
+						getPlayerAssistant().movePlayer(x, y, height);
+						getPlayerAssistant().resetAnimationsToPrevious();
+						appearanceUpdateRequired = true;
+					}
+					if (tStage == 3) {
+						getPacketSender().showInterface(18452);
+					}
+					if (tStage == 1) {
+						container.stop();
+						return;
+					}
+					if (tStage > 0) {
+						tStage--;
+					}
+				}
+				public void stop() {
+					getPacketSender().closeAllWindows();
+					tStage = 0;
+				}
+			}, 1);
+		}
+	}
 
 	public void fade(final int x, final int y, final int height) {
-        if (System.currentTimeMillis() - lastAction > 5000) {
-            lastAction = System.currentTimeMillis();
-            resetWalkingQueue();
-            CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
-                int tStage = 6;
-                public void execute(CycleEventContainer container) {
-                	if (tStage == 6) {
-                		getPacketSender().showInterface(18460);
-                    }
-                    if (tStage == 5) {
-                      getPlayerAssistant().movePlayer(x, y, height);
-                      updateRequired = true;
-                      appearanceUpdateRequired = true;
-                    }
-                    if (tStage == 4) {
-                    	getPacketSender().showInterface(18452);
-                    }
-                    if (tStage == 1) {
-                        container.stop();
-                        return;
-                    }
-                    if (tStage > 0) {
-                        tStage--;
-                    }
-                }
-                public void stop() {
-                	getPacketSender().closeAllWindows();
-                    tStage = 0;
-                }
-            }, 1);
-        }
-    }
+		if (System.currentTimeMillis() - lastAction > 5000) {
+			lastAction = System.currentTimeMillis();
+			resetWalkingQueue();
+			CycleEventHandler.getSingleton().addEvent(this, new CycleEvent() {
+				int tStage = 6;
+				public void execute(CycleEventContainer container) {
+					if (tStage == 6) {
+						getPacketSender().showInterface(18460);
+					}
+					if (tStage == 5) {
+						getPlayerAssistant().movePlayer(x, y, height);
+						updateRequired = true;
+						appearanceUpdateRequired = true;
+					}
+					if (tStage == 4) {
+						getPacketSender().showInterface(18452);
+					}
+					if (tStage == 1) {
+						container.stop();
+						return;
+					}
+					if (tStage > 0) {
+						tStage--;
+					}
+				}
+				public void stop() {
+					getPacketSender().closeAllWindows();
+					tStage = 0;
+				}
+			}, 1);
+		}
+	}
 
 	/**
 	 * The option the player clicked
@@ -1322,20 +1330,20 @@ public abstract class Player {
 			restoreStatsDelay, logoutDelay, buryDelay, foodDelay, potDelay,
 			doorDelay, doubleDoorDelay, buySlayerTimer, lastIncrease,
 			boneDelay, leverDelay = 0, searchObjectDelay = 0, clickDelay = 0;
-	
+
 	public boolean hideYell;
 
 
 	private Npc specialTarget = null;
-	
+
 	public void setSpecialTarget(Npc target) {
 		this.specialTarget = target;
 	}
-	
+
 	public Npc getSpecialTarget() {
 		return specialTarget;
 	}
-		
+
 	public int miningAxe = -1, woodcuttingAxe = -1;
 
 	public boolean initialized, musicOn = true, luthas,
@@ -1368,9 +1376,9 @@ public abstract class Player {
 			isHarvesting, openDuel,  killedJad, canHealersRespawn = true, playerIsBusy, miningRock,
 			randomEventsEnabled, debugMode, clickToTele = false;
 
-	public int votePoints, saveDelay, playerKilled, gertCat, restGhost,
-			romeojuliet, runeMist, lostCity, vampSlayer, cookAss, doricQuest, blackKnight, shieldArrav,
-			sheepShear, impsC, randomActions,
+	public int votePoints, saveDelay, playerKilled, GertrudesCat, RestlessGhost,
+			RomeoAndJuliet, RuneMysteries, LostCity, VampireSlayer, CooksAssistant, DoricsQuest, BlackKnightsFortress, ShieldOfArrav,
+			SheepShearer, ImpCatcher, randomActions,
 			totalPlayerDamageDealt, killedBy, lastChatId = 1, privateChat,
 			dialogueId, randomCoffin, newLocation, specEffect,
 			specBarId, attackLevelReq, defenceLevelReq, strengthLevelReq,
@@ -1382,8 +1390,8 @@ public abstract class Player {
 			lastArrowUsed = -1, autoRet = 1, pcDamage = 0, xInterfaceId = 0,
 			xRemoveId = 0, xRemoveSlot = 0, tzhaarToKill = 0, tzhaarKilled = 0,
 			waveId, frozenBy = 0, poisonDamage = 0, teleAction = 0,
-			bonusAttack = 0, lastNpcAttacked = 0, killCount = 0, witchspot,
-			pirateTreasure, ptjob, cwKills, cwDeaths, cwGames, tzKekSpawn = 0,
+			bonusAttack = 0, lastNpcAttacked = 0, killCount = 0, WitchsPotion,
+			PiratesTreasure, PiratesTreasureJob, cwKills, cwDeaths, cwGames, tzKekSpawn = 0,
 			playerBankPin, recoveryDelay = 3, attemptsRemaining = 3,
 			lastPinSettings = -1, setPinDate = -1, changePinDate = -1,
 			deletePinDate = -1, firstPin, secondPin, thirdPin, fourthPin,
@@ -1398,7 +1406,7 @@ public abstract class Player {
 			teleBlockLength, poisonDelay, slayerPoints, blackMarks,
 			SlayerMaster, teleOtherTimer = 0,
 			teleOtherSlot = -1, tutorialProgress, cookStage1 = 1,
-			knightS, brightness = 3, recoilHits, droppedItem = -1,
+			KnightsSword, brightness = 3, recoilHits, droppedItem = -1,
 			spawnedHealers, cannonX = 0, cannonY = 0,
 			playerShopId;
 
@@ -1619,7 +1627,7 @@ public abstract class Player {
 			4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 2097152,
 			8388608, 16777216, 67108864, 134217728 };
 
-	
+
 	/**
 	 * Combat variables
 	 */
@@ -1637,13 +1645,14 @@ public abstract class Player {
 	/**
 	 * End
 	 */
-	
+
 	public int clickNpcType, clickObjectType, objectId, objectX,
 			objectY, npcIndex, npcClickIndex, npcType;
 	public int pItemX, pItemY, pItemId;
 	public boolean isMoving, walkingToItem;
 	public boolean isShopping, updateShop;
 	public int shopId;
+	public int webShopId;
 	public int tradeStatus, tradeWith;
 	public boolean forcedChatUpdateRequired, inDuel, tradeAccepted, goodTrade,
 			inTrade, tradeRequested, tradeResetNeeded, tradeConfirmed,
@@ -1674,40 +1683,40 @@ public abstract class Player {
 	public boolean antiFirePot;
 
 	public boolean underWater;
-    public boolean prevRunning2;
-    public int prevPrevPlayerRunIndex;
-    public int prevPlayerStandIndex;
-    public int prevplayerWalkIndex;
-    public int prevPlayerTurnIndex;
-    public int prevPlayerTurn90CWIndex;
-    public int prevPlayerTurn90CCWIndex;
-    public int prevPlayerTurn180Index;
+	public boolean prevRunning2;
+	public int prevPrevPlayerRunIndex;
+	public int prevPlayerStandIndex;
+	public int prevplayerWalkIndex;
+	public int prevPlayerTurnIndex;
+	public int prevPlayerTurn90CWIndex;
+	public int prevPlayerTurn90CCWIndex;
+	public int prevPlayerTurn180Index;
 
-   public Client asClient() {
-       return (Client) this;
-   }
+	public Client asClient() {
+		return (Client) this;
+	}
 
-   private Player player;
-   public Player asPlayer() {
-       return (Player) player;
-   }
+	private Player player;
+	public Player asPlayer() {
+		return (Player) player;
+	}
 
-   public boolean inTrawlerBoat() {
-       if(inArea(2808, 2811,3415,3425)) {
-           return true;
-       }
-       return false;
-   }
+	public boolean inTrawlerBoat() {
+		if(inArea(2808, 2811,3415,3425)) {
+			return true;
+		}
+		return false;
+	}
 
-   public boolean inTrawlerGame() {
-       if(inArea(2808, 2811,3415,3425)) {
-           return true;
-       }
-       return false;
-   }
+	public boolean inTrawlerGame() {
+		if(inArea(2808, 2811,3415,3425)) {
+			return true;
+		}
+		return false;
+	}
 
-   public long lastFishingTrawlerInteraction;
-   public boolean inFishingTrawlerRewardsInterface;
+	public long lastFishingTrawlerInteraction;
+	public boolean inFishingTrawlerRewardsInterface;
 
 	/**
 	 * Castle Wars
@@ -1797,12 +1806,12 @@ public abstract class Player {
 	}
 
 
-	 public boolean playerIsBusy() {
-        if (isShopping || inTrade || openDuel || isBanking || duelStatus == 1) {
-            return true;
-        }
-        return false;
-	 }
+	public boolean playerIsBusy() {
+		if (isShopping || inTrade || openDuel || isBanking || duelStatus == 1) {
+			return true;
+		}
+		return false;
+	}
 
 	public boolean inDuelArena() {
 		if (absX > 3322 && absX < 3394 && absY > 3195 && absY < 3291 || absX > 3311 && absX < 3323 && absY > 3223 && absY < 3248) {
@@ -1842,6 +1851,7 @@ public abstract class Player {
 	public String playerName = null;
 	public String playerName2 = null;
 	public String playerPass = null;
+	public String uniqueId = null;
 	public int playerRights;
 	public PlayerHandler handler = null;
 	public int playerItems[] = new int[28];
@@ -2076,25 +2086,25 @@ public abstract class Player {
 		walkingQueueY[wQueueWritePtr] = y;
 		wQueueWritePtr = next;
 	}
-	
+
 	public boolean checkRangeDistance() {
 		return (usingRangeWeapon || usingBow);
 	}
-	
+
 	public int gatherRangeDistance(int distance) {
 		//dart (non long range)
 		if (usingRangeWeapon && RangeData.usingDart(this) && fightMode != 3) {
 			distance = 3;
-		//longbow (long range)
+			//longbow (long range)
 		} else if (usingBow && fightMode == 3 && RangeData.usingLongbow(this)) {
 			distance = 10;
-		//longbow (non long range)
+			//longbow (non long range)
 		} else if (usingBow && fightMode != 3 && RangeData.usingLongbow(this)) {
 			distance = RangeData.usingCrystalBow(this) ? 10 : 8;
-		//dart, knife, throwing axe (long range)
+			//dart, knife, throwing axe (long range)
 		} else if (usingRangeWeapon && fightMode == 3) {
 			distance = RangeData.usingDart(this) ? 5 : 6;
-		//short bow 
+			//short bow
 		} else if (usingBow && !RangeData.usingLongbow(this)) {
 			distance = fightMode == 3 ? 7 : 9;
 		}
@@ -2235,7 +2245,7 @@ public abstract class Player {
 		if (dir1 == -1) {
 			// don't have to update the character position, because we're just standing
 			if (str != null){
-					str.createFrameVarSizeWord(81);
+				str.createFrameVarSizeWord(81);
 				str.initBitAccess();
 				isMoving = false;
 				if (updateRequired) {
@@ -3100,7 +3110,7 @@ public abstract class Player {
 			int difference = playerLevel[3] - damage;
 			if (difference <= getLevelForXP(playerXP[3]) / 10 && difference > 0)
 				appendRedemption();
-				getPlayerAssistant().handleROL();
+			getPlayerAssistant().handleROL();
 		} else {
 			if (hitUpdateRequired) {
 				hitUpdateRequired = false;

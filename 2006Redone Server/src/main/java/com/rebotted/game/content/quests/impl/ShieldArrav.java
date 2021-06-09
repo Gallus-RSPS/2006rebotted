@@ -24,7 +24,7 @@ public class ShieldArrav {
 		// Set the title
 		player.getPacketSender().sendString("Shield of Arrav", 8144);
 		// Add content
-		if (player.shieldArrav == 0) {
+		if (player.ShieldOfArrav == 0) {
 			lines = new String[]{
 					"I can start this quest by speaking to @red@Reldo @bla@in @red@Varrock's",
 					"@red@Palace Library@bla@, or by speaking to @red@Charlie the Tramp @bla@near",
@@ -32,23 +32,23 @@ public class ShieldArrav {
 					"I will need a friend to help me and some combat experience",
 					"may be an advantage.",
 			};
-		} else if (player.shieldArrav == 1) {
+		} else if (player.ShieldOfArrav == 1) {
 			lines =  new String[]{
 					"I need to find @red@'The Shield of Arrav' @bla@book",
 					"in @red@Varrock's Palace Library",
 			};
-		} else if (player.shieldArrav == 2) {
+		} else if (player.ShieldOfArrav == 2) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"I should speak to @red@Reldo",
 			};
-		} else if (player.shieldArrav == 3) {
+		} else if (player.ShieldOfArrav == 3) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",
 					"Lets go speak with @red@Baraek",
 			};
-		} else if (player.shieldArrav == 4) {
+		} else if (player.ShieldOfArrav == 4) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",
@@ -57,7 +57,7 @@ public class ShieldArrav {
 					"He said it was located in the South Eastern side of Varrock,",
 					"I should check it out.",
 			};
-		} else if (player.shieldArrav == 5) {
+		} else if (player.ShieldOfArrav == 5) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",
@@ -66,7 +66,7 @@ public class ShieldArrav {
 					"I need to goto the @red@Blue Moon Inn",
 					"and obtain the intelligence report.",
 			};
-		} else if (player.shieldArrav == 6) {
+		} else if (player.ShieldOfArrav == 6) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",
@@ -77,7 +77,7 @@ public class ShieldArrav {
 					"and take it to @red@Curator Haig Halen",
 					"he should be at @red@Varrock Museum"
 			};
-		} else if (player.shieldArrav == 7) {
+		} else if (player.ShieldOfArrav == 7) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",
@@ -88,7 +88,7 @@ public class ShieldArrav {
 					"I need to take this certificate",
 					"to @red@King Roald @bla@for my reward",
 			};
-		} else if (player.shieldArrav == 8) {
+		} else if (player.ShieldOfArrav == 8) {
 			lines =  new String[]{
 					"@str@I found 'The Shield of Arrav' book",
 					"@str@I've spoken with Raldo",

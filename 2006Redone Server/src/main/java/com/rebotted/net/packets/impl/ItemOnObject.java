@@ -6,12 +6,14 @@ import com.rebotted.game.content.skills.cooking.CookingTutorialIsland;
 import com.rebotted.game.content.skills.crafting.JewelryMaking;
 import com.rebotted.game.content.skills.crafting.Pottery;
 import com.rebotted.game.content.skills.crafting.Spinning;
+import com.rebotted.game.content.skills.prayer.Ectofuntus;
 import com.rebotted.game.items.UseItem;
 import com.rebotted.game.items.impl.Fillables;
 import com.rebotted.game.players.Player;
 import com.rebotted.net.packets.PacketType;
 import com.rebotted.world.Boundary;
 import com.rebotted.world.clip.Region;
+import com.rebotted.game.content.skills.prayer.Ectofuntus.EctofuntusData;
 
 public class ItemOnObject implements PacketType {
 
@@ -27,6 +29,26 @@ public class ItemOnObject implements PacketType {
 		player.objectX = objectX;
 		player.objectY = objectY;
 		player.endCurrentTask();
+
+		//Ectofuntus
+
+		for (final EctofuntusData ectofuntus : EctofuntusData.values()) {
+			if (itemId == ectofuntus.getBoneId() && objectId == 11162) {
+				Ectofuntus.boneOnLoader(player, objectId, itemId);
+				return;
+			} else if (itemId == ectofuntus.getBonemealId() && objectId == 5282) {
+				Ectofuntus.handleEctofuntus(player, objectId);
+				return;
+			}
+		}
+
+		if (itemId == 1925 && objectId == 5461) {
+			Ectofuntus.fillBucketWithSlime(player, objectId);
+			return;
+		}
+
+		//end Ectofuntus
+
 		if (!player.getItemAssistant().playerHasItem(itemId, 1)) {
 			return;
 		}
@@ -39,6 +61,7 @@ public class ItemOnObject implements PacketType {
 							+ " ObjectY: " + objectY + ".");
 		}
 		switch (objectId) {
+
 		case 3044:
 			if (itemId == 438 || itemId == 436) {
 				if (player.getItemAssistant().playerHasItem(438) && player.getItemAssistant().playerHasItem(436)) {

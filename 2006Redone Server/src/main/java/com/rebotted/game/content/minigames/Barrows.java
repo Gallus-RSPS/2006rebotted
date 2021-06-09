@@ -94,11 +94,11 @@ public class Barrows {
 			c.getDialogueHandler().sendDialogues(1007, c.npcType);
 		} else if (c.absX == 3005 && c.absY == 3376) {
 			c.getDialogueHandler().sendDialogues(1007, c.npcType);
-		} else if (c.absX == 2999 && c.absY == 3383 && c.pirateTreasure == 4) {
+		} else if (c.absX == 2999 && c.absY == 3383 && c.PiratesTreasure == 4) {
 			NpcHandler.spawnNpc(c, 1217, c.absX + Misc.random(1), c.absY + Misc.random(1), c.heightLevel, 0, 10, 2, 5, 5, true, true);
 			c.getDialogueHandler().sendNpcChat1("First moles, now this! Take this, vanda!", c.talkingNpc, "Gardener");
-			c.pirateTreasure = 5;
-		} else if (c.absX == 2999 && c.absY == 3383 && c.pirateTreasure == 5) {
+			c.PiratesTreasure = 5;
+		} else if (c.absX == 2999 && c.absY == 3383 && c.PiratesTreasure == 5) {
 				QuestRewards.pirateFinish(c);
 		} else {
 			c.getPacketSender().sendMessage("You don't find anything...");

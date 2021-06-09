@@ -16,10 +16,10 @@ public class ImpCatcher {
 		}
 		client.getPacketSender().sendString("@dre@Imp Catcher", 8144);
 		client.getPacketSender().sendString("", 8145);
-		if (client.impsC == 0) {
+		if (client.ImpCatcher == 0) {
 			client.getPacketSender().sendString( "I can start this quest by speaking to Wizard Mizgog who is", 8147);
 			client.getPacketSender().sendString("in the Wizard's Tower.", 8148);
-		} else if (client.impsC == 1) {
+		} else if (client.ImpCatcher == 1) {
 			client.getPacketSender().sendString("@str@I can start this quest by speaking to Wizard Mizgog who is", 8147);
 			client.getPacketSender().sendString("@str@in the Wizard's Tower.", 8148);
 			client.getPacketSender().sendString("", 8149);
@@ -28,7 +28,7 @@ public class ImpCatcher {
 			client.getPacketSender().sendString("Yellow bead", 8152);
 			client.getPacketSender().sendString("Black bead", 8153);
 			client.getPacketSender().sendString("White bead", 8154);
-		} else if (client.impsC == 2) {
+		} else if (client.ImpCatcher == 2) {
 			client.getPacketSender().sendString("@str@I can start this quest by speaking to Wizard Mizgog who is", 8147);
 			client.getPacketSender().sendString("@str@in the Wizard's Tower.", 8148);
 			client.getPacketSender().sendString("", 8149);

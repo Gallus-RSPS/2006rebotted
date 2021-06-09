@@ -32,9 +32,6 @@ import com.rebotted.game.players.Player;
 import com.rebotted.game.players.PlayerHandler;
 import com.rebotted.game.players.PlayerSave;
 import com.rebotted.game.shops.ShopHandler;
-import com.rebotted.integrations.PlayersOnlineWebsite;
-import com.rebotted.integrations.RegisteredAccsWebsite;
-import com.rebotted.integrations.SettingsLoader;
 import com.rebotted.integrations.discord.DiscordActivity;
 import com.rebotted.integrations.discord.JavaCord;
 import com.rebotted.net.ConnectionHandler;
@@ -167,7 +164,6 @@ public class GameEngine {
 		/**
 		 * Start Integration Services
          **/
-        SettingsLoader.loadSettings();
 		JavaCord.init();
 
 		/**
@@ -232,8 +228,6 @@ public class GameEngine {
 					FightPits.process();
 					pestControl.process();
 					CycleEventHandler.getSingleton().process();
-					PlayersOnlineWebsite.addUpdatePlayersOnlineTask();
-					RegisteredAccsWebsite.addUpdateRegisteredUsersTask();
 					DiscordActivity.updateActivity();
 					if (System.currentTimeMillis() - lastMassSave > 300000) {
 						for (Player p : PlayerHandler.players) {

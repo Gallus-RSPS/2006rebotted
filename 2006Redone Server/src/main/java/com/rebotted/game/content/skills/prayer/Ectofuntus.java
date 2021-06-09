@@ -58,6 +58,25 @@ public class Ectofuntus {
 	}
 
 	/**
+	 * Use the Ectophial to teleport to Ectofuntus
+	 */
+	public static void ectophialTeleport(Player player) throws InterruptedException {
+				player.teleX = 3659;
+				player.teleY = 3517;
+				player.teleHeight = 0;
+				player.startAnimation(POUR_OUT_ECTOPHIAL, 10);
+				player.teleTimer = 10;
+				player.teleGfx = ECTOPHIAL_SPLASH;
+				player.teleEndAnimation = -1;
+	}
+
+	public static void refillEctophial(Player player) {
+
+		return;
+	}
+
+
+	/**
 	 * Put bones in the loader
 	 * 
 	 * @param objectId
@@ -66,7 +85,7 @@ public class Ectofuntus {
 	public static void boneOnLoader(Player player, int objectId, int boneId) {
 		for (final EctofuntusData ectofuntus : EctofuntusData.values()) {
 			if (player.ectofuntusBoneCrusherState.equals("Loaded")) {
-				player.getPacketSender().sendMessage("There are already bone ready to be crushed.");
+				player.getPacketSender().sendMessage("There are already bones ready to be crushed.");
 				return;
 			} else if (player.ectofuntusBoneCrusherState.equals("Bin")) {
 				player.getPacketSender().sendMessage("The bin is full please empty it.");
@@ -155,7 +174,6 @@ public class Ectofuntus {
 	 * Handles ectofuntus
 	 * 
 	 * @param objectId
-	 * @param itemId
 	 */
 	public static void handleEctofuntus(Player player, int objectId) {
 		player.turnPlayerTo(3660, 3520);
@@ -165,9 +183,10 @@ public class Ectofuntus {
 					@Override
 					public void execute(CycleEventContainer container) {
 						player.getItemAssistant().deleteItem(ectofuntus.getBonemealId(), 1);
+						player.getItemAssistant().deleteItem(BUCKET_OF_SLIME, 1);
 						player.startAnimation(WORSHIP);
 						player.getPlayerAssistant().addSkillXP(ectofuntus.getWorshipExperience(), player.playerPrayer);
-						player.getPacketSender().sendMessage("You pray to the ectofuntus.");
+						player.getPacketSender().sendMessage("You pray to the Ectofuntus.");
 						container.stop();
 					}
 
@@ -185,7 +204,6 @@ public class Ectofuntus {
 	 * Fills all buckets in your inventory individualy with slime
 	 * 
 	 * @param objectId
-	 * @param itemId
 	 */
 	public static void fillBucketWithSlime(Player player, final int objectId) {
 		for (int i = 0; i < SLIME.length; i++) {
@@ -198,7 +216,7 @@ public class Ectofuntus {
 							player.getItemAssistant().addItem(BUCKET_OF_SLIME, 1);
 							player.startAnimation(BUCKET_FILL);
 						} else {
-							player.getPacketSender().sendMessage("You have ran out of buckets.");
+							player.getPacketSender().sendMessage("You have run out of buckets.");
 							container.stop();
 						}
 					}
@@ -219,6 +237,13 @@ public class Ectofuntus {
 	private final static int POT = 1931;
 	public final static int BUCKET = 1925;
 	private final static int BUCKET_OF_SLIME = 4286;
+	private final static int FULL_ECTOPHIAL = 4251;
+	private final static int EMPTY_ECTOPHIAL = 4252;
+
+	/**
+	 * gfx constants
+	 */
+	private final static int ECTOPHIAL_SPLASH = 541;
 
 	/**
 	 * object constants
@@ -230,9 +255,11 @@ public class Ectofuntus {
 	/**
 	 * animation constants
 	 */
+	private final static int POUR_OUT_ECTOPHIAL = 1652;
 	private final static int WORSHIP = 1651;
 	private final static int WHEEL = 1648;
 	private final static int BONES = 1649;
 	private final static int BUCKET_FILL = 895;
+	private final static int FILL_ECTOPHIAL = 827;
 
 }

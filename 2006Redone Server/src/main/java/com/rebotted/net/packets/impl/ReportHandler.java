@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.rebotted.game.players.Player;
+import com.rebotted.integrations.website.bubble;
 import com.rebotted.util.Misc;
 
 public class ReportHandler {
@@ -82,18 +83,22 @@ public class ReportHandler {
 							|| savedNames[i].equalsIgnoreCase(player)) {
 						sendText += " -[" + savedTimes[i] + ": "
 								+ savedNames[i] + "]: " + savedSpeach[i]
-								+ "\r\n";
+								+ "</br>";
 					}
 				}
 			}
 
-			sendText = sendText.replaceAll("'", " ");
+			System.out.println(sendText);
+			//sendText = sendText.replaceAll("'", " ");
 			String month = getMonth(new SimpleDateFormat("MM")
 					.format(new Date()));
 			String day = new SimpleDateFormat("dd").format(new Date());
-			writeReport("" + player + " was reported by " + c.playerName + ", "
-					+ reportNames[rule] + ", " + month + ", " + day + "",
-					sendText + ".", reportNames[rule]);
+			try {
+				bubble.reportAbuse(c, player, sendText, reportNames[rule]);
+			}catch(IOException e){}
+//			writeReport("" + player + " was reported by " + c.playerName + ", "
+//					+ reportNames[rule] + ", " + month + ", " + day + "",
+//					sendText + ".", reportNames[rule]);
 			c.getPacketSender()
 					.sendMessage(
 							"Thank you, your report has been received and will be reviewed.");

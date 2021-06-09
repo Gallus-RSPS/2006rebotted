@@ -1,6 +1,9 @@
 package com.rebotted.game.content.quests;
 
 import com.rebotted.game.players.Player;
+import com.rebotted.integrations.website.bubble;
+
+import java.io.IOException;
 
 /**
  * Quest Rewards
@@ -27,15 +30,18 @@ public class QuestRewards {
 		player.getPacketSender().sendMessage("You completed " + questName + "!");
 		QuestAssistant.sendStages(player);
 		player.getPacketSender().sendQuickSong(93, 0);
+		try {
+			bubble.addAdventureLog(player, "Completed the " + questName + " quest.");
+		} catch(IOException e) {}
 	}
 	
 	public static void knightsReward(Player player) {
-		questReward(player, "Knight's Sword Quest", "1 Quest Point", "12,725 Smithing XP", "", "", "", "", 0);
+		questReward(player, "The Knight's Sword", "1 Quest Point", "12,725 Smithing XP", "", "", "", "", 0);
 		QUEST_NAME = "The Knight's Sword";
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7346);
 		player.getPlayerAssistant().addSkillXP(12725, player.playerSmithing);
 		player.questPoints ++;
-		player.knightS = 9;
+		player.KnightsSword = 9;
 	}
 
 	public static void gertFinish(Player player) {
@@ -47,7 +53,7 @@ public class QuestRewards {
 		player.getItemAssistant().addOrDropItem(1560, 1);
 		player.getPlayerAssistant().addSkillXP(1525, player.playerCooking);
 		player.questPoints++;
-		player.gertCat = 7;
+		player.GertrudesCat = 7;
 	}
 
 	public static void pirateFinish(Player c) {
@@ -56,7 +62,7 @@ public class QuestRewards {
 		c.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7341);
 		c.getItemAssistant().addOrDropItem(2714, 1);
 		c.questPoints += 2;
-		c.pirateTreasure = 6;
+		c.PiratesTreasure = 6;
 	}
 
 	public static void witchFinish(Player client) {
@@ -65,7 +71,7 @@ public class QuestRewards {
 		client.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7348);
 		client.getPlayerAssistant().addSkillXP(325, client.playerMagic);
 		client.questPoints++;
-		client.witchspot = 3;
+		client.WitchsPotion = 3;
 	}
 
 	public static void julietFinish(Player player) {
@@ -73,7 +79,7 @@ public class QuestRewards {
 		QUEST_NAME = "Romeo and Juliet";
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7343);
 		player.questPoints += 5;
-		player.romeojuliet = 9;
+		player.RomeoAndJuliet = 9;
 	}
 
 	public static void restFinish(Player client) {
@@ -82,7 +88,7 @@ public class QuestRewards {
 		client.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7337);
 		client.getPlayerAssistant().addSkillXP(125, client.playerPrayer);
 		client.questPoints++;
-		client.restGhost = 5;
+		client.RestlessGhost = 5;
 	}
 
 	public static void vampFinish(Player player) {
@@ -91,7 +97,7 @@ public class QuestRewards {
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7347);
 		player.getPlayerAssistant().addSkillXP(4825, player.playerAttack);
 		player.questPoints += 3;
-		player.vampSlayer = 5;
+		player.VampireSlayer = 5;
 	}
 
 	public static void runeFinish(Player player) {
@@ -100,7 +106,7 @@ public class QuestRewards {
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7335);
 		player.getItemAssistant().addOrDropItem(1438, 1);
 		player.questPoints++;
-		player.runeMist = 4;
+		player.RuneMysteries = 4;
 	}
 
 	public static void sheepFinish(Player player) {
@@ -110,7 +116,7 @@ public class QuestRewards {
 		player.getItemAssistant().addOrDropItem(995, 60);
 		player.getPlayerAssistant().addSkillXP(150, player.playerCrafting);
 		player.questPoints++;
-		player.sheepShear = 2;
+		player.SheepShearer = 2;
 	}
 
 	public static void doricFinish(Player player) {
@@ -120,7 +126,7 @@ public class QuestRewards {
 		player.getItemAssistant().addOrDropItem(995, 180);
 		player.getPlayerAssistant().addSkillXP(1300, player.playerMining);
 		player.questPoints++;
-		player.doricQuest = 3;
+		player.DoricsQuest = 3;
 	}
 
 	public static void impFinish(Player player) {
@@ -130,17 +136,17 @@ public class QuestRewards {
 		player.getItemAssistant().addOrDropItem(1478, 1);
 		player.getPlayerAssistant().addSkillXP(875, player.playerMagic);
 		player.questPoints++;
-		player.impsC = 2;
+		player.ImpCatcher = 2;
 	}
 
 	public static void cookReward(Player player) {
-		questReward(player, "Cook's Assistant", "1 Quest Point", "500 Coins", "300 Cooking XP", "", "", "", 326);
+		questReward(player, "Cook's Assistant", "1 Quest Point", "500 Coins", "300 Cooking XP", "", "", "", 1891);
 		QUEST_NAME = "Cook's Assistant";
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7333);
 		player.getItemAssistant().addOrDropItem(995, 500);
 		player.getPlayerAssistant().addSkillXP(300, player.playerCooking);
 		player.questPoints++;
-		player.cookAss = 3;
+		player.CooksAssistant = 3;
 	}
 
 	public static void blackKnightReward(Player player) {
@@ -149,7 +155,7 @@ public class QuestRewards {
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7332);
 		player.getItemAssistant().addOrDropItem(995, 2500);
 		player.questPoints += 3;
-		player.blackKnight = 3;
+		player.BlackKnightsFortress = 3;
 	}
 
 	public static void shieldArravReward(Player player) {
@@ -158,7 +164,7 @@ public class QuestRewards {
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7345);
 		player.getItemAssistant().addOrDropItem(995, 1200);
 		player.questPoints++;
-		player.shieldArrav = 8;
+		player.ShieldOfArrav = 8;
 	}
 	
 	public static void lostCityReward(Player player) {
@@ -166,6 +172,6 @@ public class QuestRewards {
 		QUEST_NAME = "Lost City";
 		player.getPacketSender().sendString("@gre@" + QUEST_NAME + "", 7367);
 		player.questPoints += 3;
-		player.lostCity = 3;
+		player.LostCity = 3;
 	}
 }

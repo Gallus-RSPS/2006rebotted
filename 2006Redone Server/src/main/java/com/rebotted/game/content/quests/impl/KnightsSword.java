@@ -10,16 +10,16 @@ public class KnightsSword {
 		}
 		player.getPacketSender().sendString("@dre@The Knight's Sword", 8144);
 		player.getPacketSender().sendString("", 8145);
-		if(player.knightS == 0) {
+		if(player.KnightsSword == 0) {
 			player.getPacketSender().sendString("I can start this quest by speaking to the squire", 8147);
 			player.getPacketSender().sendString("who is in the courtyard of the White Knight's castle", 8148);
 			player.getPacketSender().sendString("", 8149);
 			player.getPacketSender().sendString("I will need at least 10 mining to complete this quest", 8150);
-		} else if(player.knightS == 1) {
+		} else if(player.KnightsSword == 1) {
 			player.getPacketSender().sendString("The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("by speaking to Reldo, the librarian in the Varrock Castle", 8149);
-		} else if (player.knightS == 2) {
+		} else if (player.KnightsSword == 2) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -27,7 +27,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("Reldo told me there may be an Imcando dwarf living near the", 8151);
 			player.getPacketSender().sendString("Asgarnian peninsula. He said I should bring him some", 8152);
 			player.getPacketSender().sendString("Red Berry Pie to get him to be willing to talk to me", 8153);
-		} else if(player.knightS == 3) {
+		} else if(player.KnightsSword == 3) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -39,7 +39,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("I found the Imcando dwarf named Thurgo and gave him some", 8155);
 			player.getPacketSender().sendString("Red berry pie. Now that he likes me I should talk to him", 8156);
 			player.getPacketSender().sendString("and find out if he'll make the sword for me.", 8157);
-		} else if(player.knightS == 4) {
+		} else if(player.KnightsSword == 4) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -55,7 +55,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("Thurgo says he needs a picture of the sword.", 8159);
 			player.getPacketSender().sendString("Maybe the squire will have one?", 8160);
 			player.getPacketSender().sendString("", 8161);
-		} else if(player.knightS == 5) {
+		} else if(player.KnightsSword == 5) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -79,7 +79,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("", 8167);
 			player.getPacketSender().sendString("", 8168);
 			player.getPacketSender().sendString("", 8169); 
-		} else if(player.knightS == 6) {
+		} else if(player.KnightsSword == 6) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -103,7 +103,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("", 8167);
 			player.getPacketSender().sendString("", 8168);
 			player.getPacketSender().sendString("", 8169); 
-		} else if(player.knightS == 7) {
+		} else if(player.KnightsSword == 7) {
 			player.getPacketSender().sendString("The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("to find a replacement.@str@ He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -128,7 +128,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("ore for him to make the sword with. He says blurite can be", 8168);
 			player.getPacketSender().sendString("mined in the cave by his home, but it is guarded by", 8169);
 			player.getPacketSender().sendString("dangerous monsters. So I should be very careful.", 8170);
-		} else if(player.knightS == 8) {
+		} else if(player.KnightsSword == 8) {
 			player.getPacketSender().sendString("The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("to find a replacement.@str@ He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);
@@ -157,7 +157,7 @@ public class KnightsSword {
 			player.getPacketSender().sendString("Thurgo made me the sword, I should bring it back to the", 8172);
 			player.getPacketSender().sendString("knight to get my reward!", 8173);
 			player.getPacketSender().sendString("", 8174);
-		} else if(player.knightS == 9) {
+		} else if(player.KnightsSword == 9) {
 			player.getPacketSender().sendString("@str@The squire has lost Sir Vyvin's sword and asked me", 8147);
 			player.getPacketSender().sendString("@str@to find a replacement. He suggested that I start", 8148);
 			player.getPacketSender().sendString("@str@by speaking to Reldo, the librarian in the Varrock Castle", 8149);

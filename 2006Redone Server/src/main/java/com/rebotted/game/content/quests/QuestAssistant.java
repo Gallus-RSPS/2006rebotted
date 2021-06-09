@@ -33,109 +33,109 @@ public class QuestAssistant {
 				player.getPacketSender().sendString("", quests.getStringId());
 			}
 		}
-		if (player.pirateTreasure == 0) {
+		if (player.PiratesTreasure == 0) {
 			player.getPacketSender().sendString("Pirate's Treasure", 7341);
-		} else if (player.pirateTreasure == 6) {
+		} else if (player.PiratesTreasure == 6) {
 			player.getPacketSender().sendString("@gre@Pirate's Treasure", 7341);
 		} else {
 			player.getPacketSender().sendString("@yel@Pirate's Treasure", 7341);
 		}
-		if (player.witchspot == 0) {
+		if (player.WitchsPotion == 0) {
 			player.getPacketSender().sendString("Witch's Potion", 7348);
-		} else if (player.witchspot == 3) {
+		} else if (player.WitchsPotion == 3) {
 			player.getPacketSender().sendString("@gre@Witch's Potion", 7348);
 		} else {
 			player.getPacketSender().sendString("@yel@Witch's Potion", 7348);
 		}
-		if (player.romeojuliet == 0) {
+		if (player.RomeoAndJuliet == 0) {
 			player.getPacketSender().sendString("Romeo and Juliet", 7343);
-		} else if (player.romeojuliet < 9) {
+		} else if (player.RomeoAndJuliet < 9) {
 			player.getPacketSender().sendString("@yel@Romeo and Juliet",
 					7343);
-		} else if (player.romeojuliet >= 9) {
+		} else if (player.RomeoAndJuliet >= 9) {
 			player.getPacketSender().sendString("@gre@Romeo and Juliet",
 					7343);
 		}
-		if (player.vampSlayer == 0) {
+		if (player.VampireSlayer == 0) {
 			player.getPacketSender().sendString("Vampyre Slayer", 7347);
-		} else if (player.vampSlayer == 5) {
+		} else if (player.VampireSlayer == 5) {
 			player.getPacketSender().sendString("@gre@Vampyre Slayer", 7347);
 		} else {
 			player.getPacketSender().sendString("@yel@Vampyre Slayer", 7347);
 		}
-		if (player.doricQuest == 0) {
+		if (player.DoricsQuest == 0) {
 			player.getPacketSender().sendString("Doric's Quest", 7336);
-		} else if (player.doricQuest == 3) {
+		} else if (player.DoricsQuest == 3) {
 			player.getPacketSender().sendString("@gre@Doric's Quest", 7336);
 		} else {
 			player.getPacketSender().sendString("@yel@Doric's Quest", 7336);
 		}
-		if (player.restGhost == 0) {
+		if (player.RestlessGhost == 0) {
 			player.getPacketSender().sendString("Restless Ghost", 7337);
-		} else if (player.restGhost == 5) {
+		} else if (player.RestlessGhost == 5) {
 			player.getPacketSender().sendString("@gre@Restless Ghost", 7337);
 		} else {
 			player.getPacketSender().sendString("@yel@Restless Ghost", 7337);
 		}
-		if (player.impsC == 0) {
+		if (player.ImpCatcher == 0) {
 			player.getPacketSender().sendString("Imp Catcher", 7340);
-		} else if (player.impsC == 1) {
+		} else if (player.ImpCatcher == 1) {
 			player.getPacketSender().sendString("@yel@Imp Catcher", 7340);
-		} else if (player.impsC == 2) {
+		} else if (player.ImpCatcher == 2) {
 			player.getPacketSender().sendString("@gre@Imp Catcher", 7340);
 		}
-		if (player.gertCat == 0) {
+		if (player.GertrudesCat == 0) {
 			player.getPacketSender().sendString("Gertrudes Cat", 7360);
-		} else if (player.gertCat == 7) {
+		} else if (player.GertrudesCat == 7) {
 			player.getPacketSender().sendString("@gre@Gertrudes Cat", 7360);
 		} else {
 			player.getPacketSender().sendString("@yel@Gertrudes Cat", 7360);
 		}
-		if (player.sheepShear == 0) {
+		if (player.SheepShearer == 0) {
 			player.getPacketSender().sendString("Sheep Shearer", 7344);
-		} else if (player.sheepShear == 2) {
+		} else if (player.SheepShearer == 2) {
 			player.getPacketSender().sendString("@gre@Sheep Shearer", 7344);
 		} else {
 			player.getPacketSender().sendString("@yel@Sheep Shearer", 7344);
 		}
-		if (player.runeMist == 0) {
+		if (player.RuneMysteries == 0) {
 			player.getPacketSender().sendString("Rune Mysteries", 7335);
-		} else if (player.runeMist == 4) {
+		} else if (player.RuneMysteries == 4) {
 			player.getPacketSender().sendString("@gre@Rune Mysteries", 7335);
 		} else {
 			player.getPacketSender().sendString("@yel@Rune Mysteries", 7335);
 		}
-		if (player.knightS == 0) {
+		if (player.KnightsSword == 0) {
 			player.getPacketSender().sendString("The Knight's Sword", 7346);
-		} else if (player.knightS < 9) {
+		} else if (player.KnightsSword < 9) {
 			player.getPacketSender().sendString("@yel@The Knight's Sword", 7346);
-		} else if (player.knightS == 9) {
+		} else if (player.KnightsSword == 9) {
 			player.getPacketSender().sendString("@gre@The Knight's Sword", 7346);
 		}
-		if (player.cookAss == 0) {
+		if (player.CooksAssistant == 0) {
 			player.getPacketSender().sendString("Cook's Assistant", 7333);
-		} else if (player.cookAss == 3) {
+		} else if (player.CooksAssistant == 3) {
 			player.getPacketSender().sendString("@gre@Cook's Assistant", 7333);
-		} else if (player.cookAss > 0 && player.cookAss < 3) {
+		} else if (player.CooksAssistant > 0 && player.CooksAssistant < 3) {
 			player.getPacketSender().sendString("@yel@Cook's Assistant", 7333);
 		}
-		if (player.blackKnight == 0) {
+		if (player.BlackKnightsFortress == 0) {
 			player.getPacketSender().sendString("Black Knights' Fortress", 7332);
-		} else if (player.blackKnight == 3) {
+		} else if (player.BlackKnightsFortress == 3) {
 			player.getPacketSender().sendString("@gre@Black Knights' Fortress", 7332);
 		} else {
 			player.getPacketSender().sendString("@yel@Black Knights' Fortress", 7332);
 		}
-		if (player.shieldArrav == 0) {
+		if (player.ShieldOfArrav == 0) {
 			player.getPacketSender().sendString("Shield of Arrav", 7345);
-		} else if (player.shieldArrav == 8) {
+		} else if (player.ShieldOfArrav == 8) {
 			player.getPacketSender().sendString("@gre@Shield of Arrav", 7345);
 		} else {
 			player.getPacketSender().sendString("@yel@Shield of Arrav", 7345);
 		}
-		if (player.lostCity == 0) {
+		if (player.LostCity == 0) {
 			player.getPacketSender().sendString("Lost City", 7367);
-		} else if (player.lostCity == 3) {
+		} else if (player.LostCity == 3) {
 			player.getPacketSender().sendString("@gre@Lost City", 7367);
 		} else {
 			player.getPacketSender().sendString("@yel@Lost City", 7367);

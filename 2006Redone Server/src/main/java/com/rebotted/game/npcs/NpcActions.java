@@ -77,38 +77,38 @@ public class NpcActions {
 		break;
 
 		case 606://squire
-		if (player.knightS == 0) {
+		if (player.KnightsSword == 0) {
 			player.getDialogueHandler().sendDialogues(610, 606);
-		} else if (player.knightS == 4) {
+		} else if (player.KnightsSword == 4) {
 			player.getDialogueHandler().sendDialogues(654, 606);
-		} else if (player.knightS == 8) {
+		} else if (player.KnightsSword == 8) {
 			player.getDialogueHandler().sendDialogues(682, 606);
 		}
 		break;
 		case 647://reldo
-		if (player.knightS == 1) {
+		if (player.KnightsSword == 1) {
 			player.getDialogueHandler().sendDialogues(626, 647);
 		}
-        else if (player.shieldArrav == 0) {
+        else if (player.ShieldOfArrav == 0) {
             player.getDialogueHandler().sendDialogues(690, 647);
         }
-        else if (player.shieldArrav == 1) {
+        else if (player.ShieldOfArrav == 1) {
             player.getDialogueHandler().sendDialogues(694, 647);
         }
-        else if (player.shieldArrav == 2) {
+        else if (player.ShieldOfArrav == 2) {
             player.getDialogueHandler().sendDialogues(697, 647);
         }
 		break;
 		case 604://thurgo
-		if (player.knightS == 2) {
+		if (player.KnightsSword == 2) {
 			player.getDialogueHandler().sendDialogues(640, 604);
-		} else if (player.knightS == 3) {
+		} else if (player.KnightsSword == 3) {
 			player.getDialogueHandler().sendDialogues(648, 604);
-		} else if (player.knightS == 6) {
+		} else if (player.KnightsSword == 6) {
 			player.getDialogueHandler().sendDialogues(660, 604);
-		} else if (player.knightS == 7) {
+		} else if (player.KnightsSword == 7) {
 			player.getDialogueHandler().sendDialogues(669, 604);
-		} else if (player.knightS == 8) {
+		} else if (player.KnightsSword == 8) {
 			player.getDialogueHandler().sendDialogues(674, 604);
 		}
 		break;
@@ -137,7 +137,7 @@ public class NpcActions {
 			break;
 
 		case 547: //Baraek
-			if (player.shieldArrav == 3) {
+			if (player.ShieldOfArrav == 3) {
 				player.getDialogueHandler().sendDialogues(701, npcType);
 			}
 			break;
@@ -147,13 +147,13 @@ public class NpcActions {
 			break;
 
 		case 644: //Straven
-			if (player.shieldArrav <= 4) {
+			if (player.ShieldOfArrav <= 4) {
 				player.getDialogueHandler().sendDialogues(711, npcType);
 			}
-			else if (player.shieldArrav == 5) {
+			else if (player.ShieldOfArrav == 5) {
 				player.getDialogueHandler().sendDialogues(730, npcType);
 			}
-			else if (player.shieldArrav > 5) {
+			else if (player.ShieldOfArrav > 5) {
 				player.getDialogueHandler().sendDialogues(741, npcType);
 			}
 			break;
@@ -163,7 +163,7 @@ public class NpcActions {
 			break;
 
 		case 648: //King Roald
-			if (player.shieldArrav == 7 && player.getItemAssistant().playerHasItem(769))
+			if (player.ShieldOfArrav == 7 && player.getItemAssistant().playerHasItem(769))
 				player.getDialogueHandler().sendDialogues(756, npcType);
 			break;
 
@@ -224,7 +224,7 @@ public class NpcActions {
 			break;
 
 		case 844:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.RuneMysteries < 4 && player.playerRights <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -418,24 +418,24 @@ public class NpcActions {
 		 */
 
 		case 557:
-			if (player.ptjob == 0) {
+			if (player.PiratesTreasureJob == 0) {
 				player.getDialogueHandler().sendDialogues(37, npcType);
-			} else if (player.ptjob == 1) {
+			} else if (player.PiratesTreasureJob == 1) {
 				player.getDialogueHandler().sendDialogues(47, npcType);
-			} else if (player.ptjob == 2) {
+			} else if (player.PiratesTreasureJob == 2) {
 				player.getDialogueHandler().sendDialogues(1000, npcType);
 			}
 			break;
 
 		case 375:
-			if (player.pirateTreasure == 0) {
+			if (player.PiratesTreasure == 0) {
 				player.getDialogueHandler().sendDialogues(554, npcType);
-			} else if (player.pirateTreasure == 1) {
+			} else if (player.PiratesTreasure == 1) {
 				player.getDialogueHandler().sendStatement(
 						"Talk to lucas and help him transport the bannanas.");
-			} else if (player.pirateTreasure == 2) {
+			} else if (player.PiratesTreasure == 2) {
 				player.getDialogueHandler().sendDialogues(569, npcType);
-			} else if (player.pirateTreasure == 3) {
+			} else if (player.PiratesTreasure == 3) {
 				player.getDialogueHandler().sendDialogues(580, npcType);
 			} else {
 				player.getPacketSender().sendMessage(
@@ -444,13 +444,13 @@ public class NpcActions {
 			break;
 
 		case 307:
-			if (player.witchspot == 0) {
+			if (player.WitchsPotion == 0) {
 				player.getDialogueHandler().sendDialogues(532, npcType);
-			} else if (player.witchspot == 1) {
+			} else if (player.WitchsPotion == 1) {
 				player.getDialogueHandler().sendDialogues(546, npcType);
-			} else if (player.witchspot == 2) {
+			} else if (player.WitchsPotion == 2) {
 				player.getDialogueHandler().sendDialogues(548, npcType);
-			} else if (player.witchspot == 3) {
+			} else if (player.WitchsPotion == 3) {
 				player.getDialogueHandler().sendNpcChat1(
 						"Welcome back, thank you again for helping me.",
 						player.talkingNpc, "Hetty");
@@ -458,31 +458,31 @@ public class NpcActions {
 			break;
 
 		case 755:// morgan
-			if (player.vampSlayer == 3) {
+			if (player.VampireSlayer == 3) {
 				player.getDialogueHandler().sendDialogues(531, npcType);
-			} else if (player.vampSlayer == 4) {
+			} else if (player.VampireSlayer == 4) {
 				player.getDialogueHandler().sendDialogues(529, npcType);
-			} else if (player.vampSlayer == 0) {
+			} else if (player.VampireSlayer == 0) {
 				player.getDialogueHandler().sendDialogues(476, npcType);
 			}
 			break;
 
 		case 743:// ned
-			if (player.vampSlayer == 0) {
+			if (player.VampireSlayer == 0) {
 				player.getDialogueHandler().sendDialogues(211, npcType);
-			} else if (player.vampSlayer == 1) {
+			} else if (player.VampireSlayer == 1) {
 				player.getDialogueHandler().sendStatement("I should go find harlow.");
-			} else if (player.vampSlayer > 1) {
+			} else if (player.VampireSlayer > 1) {
 				player.getDialogueHandler().sendDialogues(1337, npcType);
 			}
 			break;
 
 		case 756:// harlow
-			if (player.vampSlayer == 1) {
+			if (player.VampireSlayer == 1) {
 				player.getDialogueHandler().sendDialogues(498, npcType);
-			} else if (player.vampSlayer == 2) {
+			} else if (player.VampireSlayer == 2) {
 				player.getDialogueHandler().sendDialogues(510, npcType);
-			} else if (player.vampSlayer == 3) {
+			} else if (player.VampireSlayer == 3) {
 				player.getDialogueHandler().sendDialogues(531, npcType);
 			} else {
 				player.getDialogueHandler().sendStatement("I'm not on this step yet.");
@@ -490,44 +490,44 @@ public class NpcActions {
 			break;
 
 		case 456:
-			if (player.restGhost == 0) {
+			if (player.RestlessGhost == 0) {
 				player.getDialogueHandler().sendDialogues(338, 456);
 			}
 			break;
 
 		case 457:
-			if (player.restGhost == 2) {
+			if (player.RestlessGhost == 2) {
 				player.getDialogueHandler().sendDialogues(371, npcType);
 			}
 			break;
 
 		case 458:
-			if (player.restGhost == 1) {
+			if (player.RestlessGhost == 1) {
 				player.getDialogueHandler().sendDialogues(352, npcType);
 			}
 			break;
 
 		case 759:
-			if (player.getItemAssistant().playerHasItem(1927, 1) && player.gertCat == 2) {
+			if (player.getItemAssistant().playerHasItem(1927, 1) && player.GertrudesCat == 2) {
 				player.getDialogueHandler().sendDialogues(319, npcType);
 				player.getItemAssistant().deleteItem(1927, 1);
 				player.getItemAssistant().addItem(1925, 1);
-				player.gertCat = 3;
+				player.GertrudesCat = 3;
 			} else if (player.getItemAssistant().playerHasItem(1552, 1)
-					&& player.gertCat == 3) {
+					&& player.GertrudesCat == 3) {
 				player.getDialogueHandler().sendDialogues(323, npcType);
 				player.getItemAssistant().deleteItem(1552, 1);
-				player.gertCat = 4;
-			} else if (player.gertCat == 4) {
+				player.GertrudesCat = 4;
+			} else if (player.GertrudesCat == 4) {
 				player.getDialogueHandler().sendStatement("Hiss!");
 				player.getDialogueHandler().sendDialogues(325, npcType);
-				player.gertCat = 5;
+				player.GertrudesCat = 5;
 			} else if (player.getItemAssistant().playerHasItem(1554, 1)
-					&& player.gertCat == 6) {
+					&& player.GertrudesCat == 6) {
 				player.getItemAssistant().deleteItem(1554, 1);
 				player.getDialogueHandler().sendDialogues(326, npcType);
-				player.gertCat = 6;
-			} else if (player.gertCat == 2) {
+				player.GertrudesCat = 6;
+			} else if (player.GertrudesCat == 2) {
 				player.getPacketSender().sendMessage("Hiss!");
 				player.getDialogueHandler().sendStatement("Fluffs hisses but clearly wants something - maybe she is thirsty?");
 			}
@@ -539,11 +539,11 @@ public class NpcActions {
 						"You don't have the requirements to do this quest.");
 				return;
 			}
-			if (player.gertCat == 0) {
+			if (player.GertrudesCat == 0) {
 				player.getDialogueHandler().sendDialogues(269, npcType);
-			} else if (player.gertCat == 1) {
+			} else if (player.GertrudesCat == 1) {
 				player.getDialogueHandler().sendDialogues(276, npcType);
-			} else if (player.gertCat == 6) {
+			} else if (player.GertrudesCat == 6) {
 				player.getDialogueHandler().sendDialogues(328, npcType);
 			} else {
 				player.getDialogueHandler()
@@ -552,67 +552,67 @@ public class NpcActions {
 			break;
 
 		case 783:
-			if (player.gertCat == 1) {
+			if (player.GertrudesCat == 1) {
 				player.getDialogueHandler().sendDialogues(286, npcType);
-			} else if (player.gertCat == 2) {
+			} else if (player.GertrudesCat == 2) {
 				player.getDialogueHandler().sendDialogues(314, npcType);
 			}
 			break;
 
 		case 639:
-			if (player.romeojuliet == 0) {
+			if (player.RomeoAndJuliet == 0) {
 				player.getDialogueHandler().sendDialogues(389, npcType);
-			} else if (player.romeojuliet == 1) {
+			} else if (player.RomeoAndJuliet == 1) {
 				player.getDialogueHandler().sendDialogues(408, npcType);
-			} else if (player.romeojuliet == 3) {
+			} else if (player.RomeoAndJuliet == 3) {
 				player.getDialogueHandler().sendDialogues(415, npcType);
-			} else if (player.romeojuliet == 4) {
+			} else if (player.RomeoAndJuliet == 4) {
 				player.getDialogueHandler().sendDialogues(424, npcType);
-			} else if (player.romeojuliet == 5) {
+			} else if (player.RomeoAndJuliet == 5) {
 				player.getDialogueHandler().sendDialogues(431, npcType);
-			} else if (player.romeojuliet == 6) {
+			} else if (player.RomeoAndJuliet == 6) {
 				player.getDialogueHandler().sendDialogues(443, npcType);
-			} else if (player.romeojuliet == 8) {
+			} else if (player.RomeoAndJuliet == 8) {
 				player.getDialogueHandler().sendDialogues(469, npcType);
-			} else if (player.romeojuliet == 9) {
+			} else if (player.RomeoAndJuliet == 9) {
 				player.getPacketSender().sendMessage("Thanks for helping me!");
 			}
-			if (player.romeojuliet == 2
+			if (player.RomeoAndJuliet == 2
 					&& player.getItemAssistant().playerHasItem(755, 1)) {
 				player.getDialogueHandler().sendDialogues(415, npcType);
 			}
-			if (player.romeojuliet == 2
+			if (player.RomeoAndJuliet == 2
 					&& !player.getItemAssistant().playerHasItem(755, 1)) {
 				player.getDialogueHandler().sendDialogues(421, npcType);
 			}
 			break;
 
 		case 276:
-			if (player.romeojuliet == 5) {
+			if (player.RomeoAndJuliet == 5) {
 				player.getDialogueHandler().sendDialogues(432, npcType);
 			}
-			if (player.romeojuliet == 6
+			if (player.RomeoAndJuliet == 6
 					&& player.getItemAssistant().playerHasItem(300, 1)
 					&& player.getItemAssistant().playerHasItem(227, 1)
 					&& player.getItemAssistant().playerHasItem(526, 1)) {
 				player.getDialogueHandler().sendDialogues(448, npcType);
 			} else {
-				if (player.romeojuliet == 6) {
+				if (player.RomeoAndJuliet == 6) {
 					player.getDialogueHandler().sendDialogues(439, npcType);
 				}
 			}
 			break;
 
 		case 637:
-			if (player.romeojuliet == 0) {
+			if (player.RomeoAndJuliet == 0) {
 				player.getDialogueHandler().sendDialogues(409, npcType);
-			} else if (player.romeojuliet == 1) {
+			} else if (player.RomeoAndJuliet == 1) {
 				player.getDialogueHandler().sendDialogues(410, npcType);
-			} else if (player.romeojuliet == 2) {
+			} else if (player.RomeoAndJuliet == 2) {
 				player.getDialogueHandler().sendDialogues(414, npcType);
-			} else if (player.romeojuliet == 7) {
+			} else if (player.RomeoAndJuliet == 7) {
 				player.getDialogueHandler().sendDialogues(457, npcType);
-			} else if (player.romeojuliet == 8) {
+			} else if (player.RomeoAndJuliet == 8) {
 				player.getDialogueHandler().sendDialogues(468, npcType);
 			}
 			break;
@@ -622,83 +622,83 @@ public class NpcActions {
 			break;
 
 		case 553:
-			if (player.runeMist == 2) {
+			if (player.RuneMysteries == 2) {
 				player.getDialogueHandler().sendDialogues(229, npcType);
-			} else if (player.runeMist == 3) {
+			} else if (player.RuneMysteries == 3) {
 				player.getDialogueHandler().sendDialogues(237, npcType);
 			}
 			break;
 
 		case 300:
-			if (player.runeMist == 1) {
+			if (player.RuneMysteries == 1) {
 				player.getDialogueHandler().sendDialogues(201, npcType);
-			} else if (player.runeMist == 2) {
+			} else if (player.RuneMysteries == 2) {
 				player.getDialogueHandler().sendDialogues(213, npcType);
-			} else if (player.runeMist == 3) {
+			} else if (player.RuneMysteries == 3) {
 				player.getDialogueHandler().sendDialogues(238, npcType);
-			} else if (player.runeMist > 3 || player.runeMist < 1) {
+			} else if (player.RuneMysteries > 3 || player.RuneMysteries < 1) {
 				player.getPacketSender().sendMessage(
 						"He has nothing to say to you.");
 			}
 			break;
 
 		case 284:
-			if (player.doricQuest == 0) {
+			if (player.DoricsQuest == 0) {
 				player.getDialogueHandler().sendDialogues(89, npcType);
-			} else if (player.doricQuest == 1) {
+			} else if (player.DoricsQuest == 1) {
 				player.getDialogueHandler().sendDialogues(84, npcType);
-			} else if (player.doricQuest == 2) {
+			} else if (player.DoricsQuest == 2) {
 				player.getDialogueHandler().sendDialogues(86, npcType);
-			} else if (player.doricQuest == 3) {
+			} else if (player.DoricsQuest == 3) {
 				player.getDialogueHandler().sendDialogues(100, npcType);
 			}
 			break;
 
 		case 706:
-			if (player.impsC == 0) {
+			if (player.ImpCatcher == 0) {
 				player.getDialogueHandler().sendDialogues(145, npcType);
-			} else if (player.impsC == 1) {
+			} else if (player.ImpCatcher == 1) {
 				player.getDialogueHandler().sendDialogues(156, npcType);
 			}
-			if (player.impsC == 1 && player.getItemAssistant().playerHasItem(1470, 1)
+			if (player.ImpCatcher == 1 && player.getItemAssistant().playerHasItem(1470, 1)
 					&& player.getItemAssistant().playerHasItem(1472, 1)
 					&& player.getItemAssistant().playerHasItem(1474, 1)
 					&& player.getItemAssistant().playerHasItem(1476, 1)) {
 				player.getDialogueHandler().sendDialogues(158, npcType);
-			} else if (player.impsC == 1) {
+			} else if (player.ImpCatcher == 1) {
 				player.getDialogueHandler().sendDialogues(157, npcType);
 			}
 			break;
 
 		case 278:
-			if (player.cookAss == 0) {
+			if (player.CooksAssistant == 0) {
 				player.getDialogueHandler().sendDialogues(50, npcType);
-			} else if (player.cookAss == 1) {
+			} else if (player.CooksAssistant == 1) {
 				player.getDialogueHandler().sendDialogues(67, npcType);
-			} else if (player.cookAss == 2) {
+			} else if (player.CooksAssistant == 2) {
 				player.getDialogueHandler().sendDialogues(69, npcType);
-			} else if (player.cookAss == 3) {
+			} else if (player.CooksAssistant == 3) {
 				player.getDialogueHandler().sendDialogues(76, npcType);
 			}
 			break;
 
 		case 608:
-			if (player.blackKnight == 0 && player.questPoints >= 12) {
+			if (player.BlackKnightsFortress == 0 && player.questPoints >= 12) {
 				player.getDialogueHandler().sendDialogues(3902, npcType);
-			} else if (player.blackKnight == 1) {
+			} else if (player.BlackKnightsFortress == 1) {
 				player.getDialogueHandler().sendDialogues(3510, npcType);
-			}else if (player.blackKnight == 2) {
+			}else if (player.BlackKnightsFortress == 2) {
 				player.getDialogueHandler().sendDialogues(3502, npcType);
-			}else if (player.blackKnight == 3) {
+			}else if (player.BlackKnightsFortress == 3) {
 				player.getPacketSender().sendMessage(
 						"He has nothing to say to you.");
 			}
 			break;
 
 		case 758:
-			if (player.sheepShear == 0) {
+			if (player.SheepShearer == 0) {
 				player.getDialogueHandler().sendDialogues(164, npcType);
-			} else if (player.sheepShear == 1) {
+			} else if (player.SheepShearer == 1) {
 				player.getDialogueHandler().sendDialogues(185, 1);
 			} else {
 				player.getPacketSender().sendMessage(
@@ -1058,7 +1058,7 @@ public class NpcActions {
 			break;
 
 		case 300:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.RuneMysteries < 4 && player.playerRights <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -1101,7 +1101,7 @@ public class NpcActions {
 
 		case 844:
 		case 462:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.RuneMysteries < 4 && player.playerRights <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				player.nextChat = 0;
 				return;
@@ -1194,7 +1194,7 @@ public class NpcActions {
 			}
 			break;
 		case 553:
-			if (player.runeMist < 4 && player.playerRights <= 1) {
+			if (player.RuneMysteries < 4 && player.playerRights <= 1) {
 				player.getDialogueHandler().sendStatement("You need to beat rune mysteries first to do this.");
 				return;
 			}

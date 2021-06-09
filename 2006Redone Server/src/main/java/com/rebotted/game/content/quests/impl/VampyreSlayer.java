@@ -18,25 +18,25 @@ public class VampyreSlayer {
 		// Set the title
 		client.getPacketSender().sendString("Vampyre Slayer", 8144);
 		// Add content
-		if (client.vampSlayer == 0) {
+		if (client.VampireSlayer == 0) {
 			lines = new String[]{
 					"I can start this quest by speaking to Morgan in",
 					"Draynor Village.",
 					"Minimum Requirements:",
 					"Be able to kill a level 37 monster.",
 			};
-		} else if (client.vampSlayer == 1) {
+		} else if (client.VampireSlayer == 1) {
 			lines =  new String[]{
 					"@str@I've talked to Morgan",
 					"I should speak to Doctor Harlow",
 			};
-		} else if (client.vampSlayer == 2) {
+		} else if (client.VampireSlayer == 2) {
 			lines =  new String[]{
 					"@str@I've talked to Doctor Harlow",
 					"I need to bring him a beer.",
 					"I should speak to the bartender",
 			};
-		} else if (client.vampSlayer == 3) {
+		} else if (client.VampireSlayer == 3) {
 			lines =  new String[]{
 					"@str@I've talked to the bartender",
 					"@str@I gave Doctor Harlow the beer",
@@ -45,12 +45,12 @@ public class VampyreSlayer {
 					"Get everything you need and go to Draynor Village.",
 					"Begin your battle.",
 			};
-		} else if (client.vampSlayer == 4) {
+		} else if (client.VampireSlayer == 4) {
 			lines =  new String[]{
 					"@str@I've killed the Vampire",
 					"I need to talk to Morgan to complete the quest.",
 			};
-		} else if (client.vampSlayer == 5) {
+		} else if (client.VampireSlayer == 5) {
 			lines =  new String[]{
 					"@str@I've killed the Vampire",
 					"@str@I've Talked to Morgan",

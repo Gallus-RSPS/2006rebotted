@@ -9,7 +9,7 @@ public class Website implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         Message message = event.getMessage();
         if (message.getContent().equalsIgnoreCase("::website") || message.getContent().equalsIgnoreCase("::site")) {
-            event.getChannel().sendMessage("www.rsrebotted.com");
+            event.getChannel().sendMessage("www.06revived.com");
         }
     }
 }
